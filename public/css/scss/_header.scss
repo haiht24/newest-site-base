@@ -1,0 +1,125 @@
+.header {
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(158,156,158,1);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(158,156,158,1);
+  box-shadow: #ccc 0 2px 5px;
+  box-sizing: border-box;
+  padding: 0 15px; /* fix row boostrap */
+  background-color: $headerBackground;
+}
+.logo {
+  padding: 5px;
+  img {
+	width:auto;
+	height:auto;
+	max-width:100%;
+	max-height: 140px;
+  }
+}
+.form-search {
+  input,button {
+    font-family: Century Gothic Regular;
+    height: 50px;
+    font-size: 18px;
+    border-color: $buttonColor;
+    border-width: 2px;
+  }
+  input {
+    border-right: 0;
+  }
+  button {
+    background-color: $buttonColor;
+  }
+  button:hover {
+    background-color: #ad000b;
+    border-color: #ad000b;
+  }
+}
+.form-search,.link-menu {
+  padding: 20px;
+}
+.link-menu {
+  padding: 0px 20px;
+  box-sizing: border-box;
+
+  .link,.caret {
+    font-family: Century Gothic Regular;
+    font-size: 20px;
+    color: #333;
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  .link {
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .link:hover {
+    border-bottom: 2px  $buttonColor solid;
+    text-decoration: none;
+  }
+  .dropdown:hover {
+    .link {
+      position: relative;
+    }
+    .dropdown-menu{
+      display: block;
+    }
+
+  }
+  .dropdown-menu {
+    border-radius: 0;
+    border-top:0;
+    box-shadow: #ccc 0 2px 5px;
+	li{
+	  padding:5px;
+	  a{
+		padding:10px;
+	  }
+	}
+  }
+}
+
+
+#content {
+  margin-top: 124px;
+}
+@media screen and (min-width: 505px) {
+  #content {
+	margin-top: 124px;
+  }
+  .navbar-fixed-top.wrap-header {
+	position: fixed;
+  }
+}
+@media screen and (max-width: 505px) {
+  #content {
+	margin-top: 0px;
+  }
+  .navbar-fixed-top.wrap-header {
+	position: relative;
+  }
+  .logo {
+	text-align: center;
+	margin: auto;
+	width: auto;
+  }
+  .link-menu {
+	padding: 5px;
+	.link,.caret {
+	  font-size: 15px;
+	}
+	.link{
+	  margin-right: 5px;
+	}
+  }
+	.header .cl {
+	  display: block;
+	  padding: 5px;
+	  margin: 1px;
+	  width: 100%;
+	  float: none;
+	}
+  .form-search {
+	padding: 5px;
+  }
+}

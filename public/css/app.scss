@@ -1,0 +1,61 @@
+@import "scss/mixin";
+@import "scss/color";
+@import "scss/font";
+@import "scss/header";
+@import "scss/footer";
+
+html, body, div, input, button {
+  font-family: Century Gothic Regular;
+  font-size: 16px;
+}
+body,html{
+  color: $fontColor;
+  margin: 0;
+  padding: 0;
+  background-color: $bodyBackground;
+}
+dd,dl,ol,ul{
+  margin:0;
+  padding:0;
+  list-style: none;
+  font-weight:400;
+}
+body,button,html,img,input,select,textarea{
+  font-family: Century Gothic Regular;
+  font-size:100%
+}
+
+a{
+  color: $linkColor;
+  text-decoration: none
+}
+a:hover {
+  text-decoration: none;
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+}
+h1,h2,h3,h4 {
+  font-weight: bold;
+  color: #333;
+}
+@media screen and (max-width: 768px){
+  h1 {
+	font-size: 24px;
+  }
+  h2 {
+	font-size: 20px;
+	}
+  h3 {
+	font-size: 18px;
+  }
+  h4 {
+	font-size: 16px;
+  }
+
+}
+
+
+
+

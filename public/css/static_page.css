@@ -166,13 +166,17 @@
 .footer .footer-body {
   color: #999;
 }
+.footer .footer-body .footer-link {
+  margin-top: 10px;
+}
 .footer .footer-body a {
   color: #999;
 }
-.footer .footer-body .footer-body-title {
+.footer .footer-body .footer-body-title h4 {
   color: #e8e8e8;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
+  text-shadow: none;
 }
 .footer .footer-bottom {
   border-top: 1px solid #3d3d3d;
@@ -219,9 +223,14 @@ a:hover {
   text-decoration: none;
 }
 
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+}
+
 h1, h2, h3, h4 {
   font-weight: bold;
-  color: #000;
+  color: #333;
 }
 
 @media screen and (max-width: 768px) {
@@ -241,5 +250,38 @@ h1, h2, h3, h4 {
     font-size: 16px;
   }
 }
+.static_container {
+  width: 80%;
+  margin: auto;
+}
+.static_container .static .static-menu {
+  width: 100%;
+  text-align: center;
+}
+.static_container .static .static-menu ul {
+  margin: auto;
+  padding: 30px 5px;
+}
+.static_container .static .static-menu ul li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+.static_container .static .static-menu ul li a {
+  color: #555;
+  padding: 10px;
+  font-size: 25px;
+}
+.static_container .static .static-menu ul li.active, .static_container .static .static-menu ul li:hover {
+  border-bottom: 2px solid #f44242;
+}
+.static_container .static .static-menu ul li.active a, .static_container .static .static-menu ul li:hover a {
+  color: #000;
+}
+.static_container .static-content {
+  background-color: #fff;
+  padding: 30px;
+  margin-bottom: 20px;
+}
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=static_page.css.map */

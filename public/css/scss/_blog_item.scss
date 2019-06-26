@@ -1,0 +1,98 @@
+.blog-news {
+  text-align: center;
+  width: 100%;
+  clear: both;
+  padding: 10px 20px;
+}
+.blog-list {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  padding: 0;
+  .blog-item {
+	display: inline-block;
+	float: left;
+	width: 18%;
+	max-height: 400px;
+	background-color: #fff;
+	margin: 8px;
+	.blog-item-wrap {
+	  .blog-img {
+		text-align: center;
+		img {
+		  max-width: 200px;
+		  max-height: 200px;
+		}
+	  }
+	  .blog-item-title,.blog-item-desc {
+		text-align: left;
+		padding: 5px;
+		margin: 1px;
+		margin-bottom: 5px;
+		line-height: 23px;
+		height: 100px;
+		width: 100%;
+		color: #111;
+		font-size: 16px;
+		overflow: hidden;
+		word-wrap: break-word;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		position: relative;
+	  }
+	  .blog-item-desc {
+		-webkit-line-clamp: 4;
+		font-size: 13px;
+	  }
+	  .blog-item-title {
+		color: #000;
+		font-weight: bold;
+		-webkit-line-clamp: 1;
+		font-size: 19px;
+		height: 47px;
+	  }
+
+	}
+  }
+
+}
+
+
+@media screen and (max-width: 1148px){
+  .blog-list {
+	.blog-item {
+	  width: 23%;
+	}
+  }
+}
+@media screen and (max-width: 950px){
+  .blog-list {
+	.blog-item {
+	  width: 30%;
+	}
+
+  }
+}
+
+@media screen and (max-width: 710px){
+  .blog-list {
+	.blog-item {
+	  width: 46%;
+
+	}
+
+  }
+}
+@media screen and (max-width: 478px){
+  .best-deals {
+	padding: 5px;
+  }
+  .blog-list {
+	.blog-item {
+	  width: 99%;
+	  margin: 5px 0;
+	}
+
+  }
+}

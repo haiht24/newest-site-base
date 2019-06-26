@@ -1,0 +1,41 @@
+@import 'app';
+
+
+.static_container {
+  width: 80%;
+  margin: auto;
+  .static {
+	.static-menu {
+	  width: 100%;
+	  text-align: center;
+	  ul {
+		margin: auto;
+		padding: 30px 5px;
+		li {
+		  list-style: none;
+		  display: inline-block;
+		  margin-right: 20px;
+		  a {
+			color: #555;
+			padding: 10px;
+			font-size: 25px;
+		  }
+		}
+		li.active,li:hover {
+		  border-bottom: 2px solid #f44242;
+		  a {
+			color: #000;
+		  }
+		}
+
+	  }
+	}
+  }
+
+  .static-content {
+	background-color: #fff;
+	padding: 30px;
+	margin-bottom: 20px;
+  }
+}
+

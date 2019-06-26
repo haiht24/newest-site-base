@@ -1,0 +1,37 @@
+.footer {
+  background-color: #333;
+  .row-foot {
+	margin: 10px 0px;
+  }
+  .footer-top {
+	background-color: #38393a;
+	height: 70px;
+	line-height: 3.12;
+  }
+  .footer-body {
+	color: #999;
+	.footer-link {
+	  margin-top: 10px;
+	}
+	a {
+	  color: #999;
+	}
+	.footer-body-title h4 {
+	  color: #e8e8e8;
+	  font-size: 18px;
+	  font-weight: bold;
+	  text-shadow: none;
+	}
+  }
+  .footer-bottom {
+	border-top: 1px solid #3d3d3d;
+	height: 39px;
+	text-align: center;
+	line-height: 39px;
+	font-size: 14px;
+	background: #333;
+	color: #b6b6b6;
+	margin: 0;
+	padding: 0;
+  }
+}

@@ -1,0 +1,25 @@
+@import 'app';
+@import 'scss/slider';
+@import 'scss/owl-slider';
+@import 'scss/coupon_item';
+@import 'scss/deals_item';
+@import 'scss/blog_item';
+
+.popular-store {
+  margin-top: 20px;
+  .wrap-popular-store {
+	border:1px solid #abc;
+	background: #fff;
+	clear:both;
+	padding:20px;
+	margin: 20px 0px;
+	border-width:1px 0;
+	.col-g {
+	  margin-top: 10px;
+	}
+	a {
+	  margin: 20px 5px;
+	}
+  }
+
+}

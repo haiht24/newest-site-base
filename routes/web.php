@@ -12,5 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/detail', function () {
+    return view('store-detail');
+});
+
+// for static page
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('aboutus');
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contactus');
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+})->name('privacy_policy');
+
+//category
+Route::get('/category', function () {
+    return view('category');
 });

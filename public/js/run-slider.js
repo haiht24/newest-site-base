@@ -31,7 +31,7 @@ $(document).ready(function(){
                 items:4,
             },
             1240:{
-                items:6,
+                items:5,
             }
         }
     })

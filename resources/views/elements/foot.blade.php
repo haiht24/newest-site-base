@@ -14,7 +14,8 @@
             </div>
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="footer-body-title"><h4>Title menu</h4></div>
-                <a href="{{ url('/category') }}">Category</a>
+                <div class="footer-link"><a href="{{ url('/category') }}">Category</a></div>
+                <div class="footer-link"><a href="{{ url('/detail') }}">Detail</a></div>
             </div>
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="footer-body-title"><h4>Title menu</h4></div>

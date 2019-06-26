@@ -29,7 +29,7 @@
 		padding: 5px;
 		margin: 1px;
 		margin-bottom: 5px;
-		line-height: 23px;
+		line-height: 24px;
 		height: 100px;
 		width: 100%;
 		color: #111;
@@ -46,11 +46,13 @@
 		font-size: 13px;
 	  }
 	  .blog-item-title {
-		color: #000;
-		font-weight: bold;
+		max-height: 35px;
 		-webkit-line-clamp: 1;
-		font-size: 19px;
-		height: 47px;
+		h4 {
+		  color: #000;
+		  font-weight: bold;
+		  font-size: 20px;
+		}
 	  }
 
 	}
@@ -79,6 +81,11 @@
   .blog-list {
 	.blog-item {
 	  width: 46%;
+	  .blog-item-wrap {
+		.blog-item-title {
+		  max-height: 35px;
+		}
+	  }
 
 	}
 

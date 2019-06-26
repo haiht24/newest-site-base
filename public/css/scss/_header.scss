@@ -42,11 +42,11 @@
   box-sizing: border-box;
 
   .link,.caret {
-    font-family: Century Gothic Regular;
-    font-size: 20px;
+    font-family: inherit;
+    font-size: 16px;
     color: #333;
     margin-right: 20px;
-    font-weight: bold;
+    font-weight: 400;
   }
   .link {
     padding-bottom: 10px;

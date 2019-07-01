@@ -54,9 +54,9 @@
                             </div>
                         </div>
                         <div class="coupons-body">
-                            <h3>
-                                Coupon title content
-                            </h3>
+                            <div>
+                                <strong>Coupon title content</strong>
+                            </div>
                             content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk
                         </div>
                         <div class="coupons-footer">
@@ -130,7 +130,7 @@
                         <img src="https://www.hotdeals.com/blog/wp-content/uploads/2019/06/Why-You-Should-Patronize-Squeezed-Online-for-Juice-Cleanser.jpg"/>
                     </div>
                     <div class="blog-item-title">
-                        <h3>Why You Should Patronize Squeezed </h3>
+                        <h4>Why You Should Patronize Squeezed </h4>
                     </div>
                     <div class="blog-item-desc">
                         Squeezed Online is one of the best places to get top quality products and services. This outlet is one of the best places to patronize for various products like Juice Cleans

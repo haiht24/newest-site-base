@@ -147,7 +147,7 @@
                         <div class="wrap-copy">
                             <div class="input-copied">Copied !!!</div>
                             <input type="text" id="select-copy" value="CODE123" readonly="1">
-                            <button class="btn btn-copy">Copy Code</button>
+                            <button class="btn btn-copy my_clip_button" id="btn-copy" title="Click me to copy to clipboard." data-clipboard-target="select-copy" data-clipboard-text="Failed copy">Copy Code</button>
                         </div>
                     </div>
                     <p>Some text in the modal.</p>

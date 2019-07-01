@@ -2,25 +2,32 @@
   font-family: "Century Gothic Regular";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Regular"), url("fonts/GOTHIC.woff") format("woff");
+  src: local("Century Gothic Regular"), url("../fonts/GOTHIC.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Italic"), url("fonts/GOTHICI.woff") format("woff");
+  src: local("Century Gothic Italic"), url("../fonts/GOTHICI.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Bold";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Bold"), url("fonts/GOTHICB.woff") format("woff");
+  src: local("Century Gothic Bold"), url("../fonts/GOTHICB.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Bold Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Bold Italic"), url("fonts/GOTHICBI.woff") format("woff");
+  src: local("Century Gothic Bold Italic"), url("../fonts/GOTHICBI.woff") format("woff");
+}
+/* gothic */
+@font-face {
+  font-family: gothic;
+  font-style: normal;
+  font-weight: 400;
+  src: local("gothic"), local("gothic"), url("../fonts/gothic?#iefix") format("embedded-opentype"), url("../fonts/gothic/GOTHIC.woff2") format("woff2"), url("../fonts/gothic/GOTHIC.woff") format("woff"), url("../fonts/gothic/gothic.ttf") format("truetype"), url("../fonts/gothic/GOTHIC.svg#gothic") format("svg");
 }
 .header {
   -webkit-box-shadow: 1px 2px 5px 0px #9e9c9e;
@@ -69,11 +76,11 @@
   box-sizing: border-box;
 }
 .link-menu .link, .link-menu .caret {
-  font-family: Century Gothic Regular;
-  font-size: 20px;
+  font-family: inherit;
+  font-size: 16px;
   color: #333;
   margin-right: 20px;
-  font-weight: bold;
+  font-weight: 400;
 }
 .link-menu .link {
   padding-bottom: 10px;
@@ -190,8 +197,11 @@
   padding: 0;
 }
 
+html, body, div, input, button, select, textarea {
+  font-family: gothic;
+}
+
 html, body, div, input, button {
-  font-family: Century Gothic Regular;
   font-size: 16px;
 }
 
@@ -209,8 +219,7 @@ dd, dl, ol, ul {
   font-weight: 400;
 }
 
-body, button, html, img, input, select, textarea {
-  font-family: Century Gothic Regular;
+body, button, html, input, select, textarea {
   font-size: 100%;
 }
 
@@ -229,10 +238,28 @@ a:-webkit-any-link {
 }
 
 h1, h2, h3, h4 {
+  font-family: gothic;
   font-weight: bold;
   color: #333;
 }
 
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}
 @media screen and (max-width: 768px) {
   h1 {
     font-size: 24px;

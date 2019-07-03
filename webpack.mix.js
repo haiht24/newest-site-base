@@ -59,8 +59,7 @@ mix.scripts([
 	useJsFile('copy'),
 	'public/js/src/glide/jquery.glide.min.js',
 	'public/js/src/owl/owl.carousel.min.js',
-	'public/js/run-slider.min.js',
-	'public/js/app-footer.min.js'
+	'public/js/run-slider.min.js'
 ], 'public/js/home/mix-footer.js');
 	//css
 mix.styles([
@@ -80,7 +79,7 @@ mix.scripts([
 	useJsCommon(),
 	useJsModule('store-detail'),
 	useJsFile('copy')
-], 'public/js/home/mix-footer.js');
+], 'public/js/detail/mix-footer.js');
 /* for catgory page */
 	//css
 mix.styles([

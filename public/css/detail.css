@@ -513,7 +513,7 @@ h1, h2, h3, h4 {
   height: 100%;
   width: 100%;
   min-height: 41px;
-  padding: 0;
+  padding: 0 !important;
 }
 .box-show .row .box-list .box-item .box-item-wrap .box-item-body .box-item-btn .wrap-btn-show {
   height: 100%;
@@ -533,10 +533,13 @@ h1, h2, h3, h4 {
   top: 0;
   background-color: #fff;
   border: 10px solid red;
+  border-top: 0;
+  border-bottom: 0;
 }
 .box-show .row .box-list .box-item .box-item-wrap .box-item-body .box-item-btn .wrap-btn-show .text-btn {
   z-index: 10;
   bottom: 0;
+  background-color: red;
 }
 .box-show .row .box-list .box-item .box-item-wrap .box-item-body .box-item-body-content {
   width: -moz-calc(100% - 185px);

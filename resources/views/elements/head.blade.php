@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en-US">
 <head>
 <title>
-  site title
+  {{ $seoConfig['title'] }}
 </title>
-  <meta content=" {site_keywords} " name="keywords">
-  <meta name="description" content=" {site_description} ">
+  <meta content="{{ $seoConfig['keyword'] }}" name="keywords">
+  <meta name="description" content="{{ $seoConfig['desc'] }}">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="Content-language" content="en"/>
   <meta name="geo.country" content="gb"/>

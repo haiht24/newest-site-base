@@ -11,6 +11,7 @@
                 <div class="footer-link"><a href="{{ route('aboutus') }}">About Domain</a></div>
                 <div class="footer-link"><a href="{{ route('contactus') }}">Contact us</a></div>
                 <div class="footer-link"><a href="{{ route('privacy_policy') }}">Privacy Policy</a></div>
+                <div class="footer-link"><a href="{{ route('termsPage') }}">Terms & Conditions</a></div>
             </div>
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="footer-body-title"><h4>Title menu</h4></div>

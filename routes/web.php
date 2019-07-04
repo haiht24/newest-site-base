@@ -24,9 +24,17 @@ Route::get('/about-us', function () {
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contactus');
-Route::get('/privacy-policy', function () {
+/*Route::get('/privacy-policy', function () {
     return view('privacy-policy');
-})->name('privacy_policy');
+})->name('privacy_policy');*/
+
+Route::get('/privacy-policy', 'StaticPageController@privacyPolicy')->name('privacy_policy');
+Route::get('/terms', 'StaticPageController@termsPage')->name('termsPage');
+Route::get('/contact-us', 'ContactUsController@index')->name('contactus');
+Route::get('/search/', 'WelcomeController@search');
+//Route::get('/contact-us', 'StaticPageController@termsPage')->name('contactus');
+
+
 
 //category
 Route::get('/category', 'CategoryController@index');

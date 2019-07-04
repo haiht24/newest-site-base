@@ -16,14 +16,7 @@
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-9 col-xs-8 cl">
                     <form class="form-search">
-                        <div class="input-group">
-                            <input type="text" name="q"  class="form-control" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </span> Search</button>
-                            </span>
-                        </div>
+                        @include('elements.search-box')
                     </form>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0">

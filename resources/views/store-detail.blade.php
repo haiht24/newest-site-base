@@ -67,14 +67,21 @@
                                 </div>
                             </div>
                             <div class="box-item-btn">
-                                <div class="box-item-btn-wrap">
+                                <div class="go-btn box-item-btn-wrap">
                                     @if(rand(0,1)==0)
-                                    <button class="btn btn-info">
+                                    <button class="get-deal btn btn-info">
                                         Click to save
                                     </button>
                                     @else
-                                    <button class="btn btn-danger">
-                                        Show coupons code
+                                    <button class="get-code btn btn-danger">
+                                        <div class="wrap-btn-show">
+                                            <div class="text-code">
+                                                123456
+                                            </div>
+                                            <div class="text-btn">
+                                                Show coupons code
+                                            </div>
+                                        </div>
                                     </button>
                                     @endif
                                 </div>

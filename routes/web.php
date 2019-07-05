@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', "HomeController@index");
 
 Route::get('/detail', function () {
     return view('store-detail');
@@ -31,6 +29,10 @@ Route::get('/privacy-policy', function () {
 })->name('privacy_policy');
 
 //category
-Route::get('/category', function () {
-    return view('category');
-});
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/{alias}', 'CategoryController@CategoriesDetail');
+Route::get('/category/{alias}/{offset}', 'CategoryController@getMoreStores');
+
+//stores
+Route::get('/stores/{alias}-coupons', 'StoresController@getDetails')->name('store-detail');
+

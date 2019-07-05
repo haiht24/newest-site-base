@@ -7,6 +7,7 @@
 
 @section('content')
 <?php
+/*
 $cat = [
     'automotive',
     'baby',
@@ -34,55 +35,49 @@ $cat = [
     'telecommunications',
     'travel'
 ];
+*/
 ?>
     <div class="category-all">
         <div class="cat-all-title">
-            <h3>All category</h3>
+            <h1>All category get coupons, deals</h1>
         </div>
         <div class="cat-all-show">
             <div class="wrap-cat-i">
-            @foreach($cat as $c)
+            @foreach($cats as $c)
             <div class="cat-show-i">
-                <a href="">
-                    <i class="{{ $c }}">
-                        {{ $c }}
+                <a href="{{ url('/category/'.$c->alias) }}" title="{{ $c->name }} category detail show all stores deals, coupons">
+                    <i class="c-i {{ $c->icon }}">
+                        {{-- $c --}}
                     </i>
                 </a>
             </div>
             @endforeach
+                <div class="clear"></div>
             </div>
         </div>
     </div>
 
     <div class="cat-content">
-        <div class="cat-get-title">
-            <div><span class="c-title"><i class="cat-icon automotive"></i>AutoMotive</span></div>
-        </div>
         <div class="cat-box-item">
             <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Catgory Name</li>
+                <li><a href="{{ url('/') }}" title="Home {{ $_SERVER['HTTP_HOST'] }}">Home</a></li>
+                <li class="active">All Categories</li>
             </ul>
 
-            <div class="cat-list-item">
-            @foreach(range(1,30) as $v)
-                <a href="">
-                <div class="cat-item">
-                    <div class="cat-item-wrap">
-                        <div class="cat-item-img">
-                            <img src="https://www.hotdeals.com/public/images/20150731/party_city_coupon.gif" />
-                        </div>
-                        <div class="cat-item-brand">
-                            Brand Name
-                        </div>
-                        <div class="cat-item-go">
-                            Go to Store <i class="glyphicon glyphicon-circle-arrow-right"></i>
-                        </div>
-                    </div>
+        @foreach($cats as $c)
+            <div class="cat-item-title">
+                <div>
+                    <a href="{{ url('/category/'.$c->alias) }}" title="{{ $c->name }} category">
+                    <h3 class="c-title"><i class="{{ $c->icon }}"></i> {{ $c->name }}</h3>
+                    </a>
                 </div>
-                </a>
+            </div>
+            <div class="cat-list-item">
+            @foreach($c->stores as $s)
+                @include('elements.cat-store-item')
             @endforeach
             </div>
+        @endforeach
         </div>
     </div>
 
@@ -90,5 +85,5 @@ $cat = [
 
 @section('scriptMix')
     @parent
-    <script src="{{ asset(mix('/js/all/mix-footer.js')) }}"></script>
+    <script src="{{ asset(mix('/js/category/mix-footer.js')) }}"></script>
 @stop

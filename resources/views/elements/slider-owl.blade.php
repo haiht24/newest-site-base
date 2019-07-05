@@ -1,15 +1,21 @@
-@foreach(range(1,10) as $v)
+<?php $count = 0; ?>
+@foreach($newestStores as $store)
+<?php $count++; ?>
+@if($count<12)
 <div>
     <div class="gradient-border-bottom">
+        <a href="{{ url('/' . $store->alias . config('config.suffix_coupon')) }}" title="{{ $store->name }}">
         <div class="gradient-border owl-box">
             <div class="owl-box-img">
-                <img src="https://www.hotdeals.com/public/images/20150731/jcpenney_coupon.jpg"/>
+                <img src="https://res.cloudinary.com/bbbd/image/fetch/w_100/v1542084333/{{ urlencode($store->logo) }}"/>
             </div>
-            <div class="s-name"><b>Store name</b></div>
-            <p class="owl-title">Receive 15% off your purchase</p>
-            <small>expires date</small><br/>
-            <a><strong>Get Deals</strong> >></a>
+            <div class="s-name"><b>{{ $store->name }}</b></div>
+            <p class="owl-title">{{ str_limit($store->short_description) }}</p>
+            <small>{{ date("Y-m-d") }}</small><br/>
+            <b class="owl-link"><strong>Get Deals</strong> >></b>
         </div>
+        </a>
     </div>
 </div>
+@endif
 @endforeach

@@ -40,31 +40,31 @@
     <div class="coupons-list">
         <div class="row">
             {{-- item --}}
-            @foreach([1,2,3,4,5,6] as $v)
+            @foreach($couponsList as $coupon)
             <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="coupons-border-box">
                     <div class="coupons-logo">
-                        <img src="https://www.hotdeals.com/public/images/termnew/201906/5d00b57f9950a.png" />
+                        <img src="https://res.cloudinary.com/bbbd/image/fetch/w_68/v1542084333/{{ $coupon->logo }}" alt="{{ $coupon->name }}" />
                     </div>
                     <div class="coupons-content">
                         <div class="coupons-top">
                             <div>
-                                <span class="cp-store-name">store name</span>
-                                <span class="cp-type">code</span>
+                                <span class="cp-store-name">{{ $coupon->name }}</span>
+                                @if(!empty($coupon->code))<span class="cp-type">CODE</span>@endif
                             </div>
                         </div>
                         <div class="coupons-body">
                             <div>
-                                <strong>Coupon title content</strong>
+                                <strong>{{ $coupon->title }}</strong>
                             </div>
-                            content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk content coupon asdasdalksd asdlkjas ljadslk
+                            {{ !empty($coupon->description)?$coupon->description : $coupon->short_description }}
                         </div>
                         <div class="coupons-footer">
                             <div class="bottom_code code_reset bottom_re">
-                                @if(rand(0,1)==1)
+                                @if(!empty($coupon->code))
                                 <a href="" rel="nofollow noopener" class="btn btn-go coupons-click coupon_button coupon_button_cover">
                                     <span class="giv2-text">Get Code</span>
-                                    <span class="giv2-code">15</span>
+                                    <span class="giv2-code">{{ $coupon->code }}</span>
                                     <span class="giv2-cover"></span>
                                     <span class="giv2-image"></span>
                                 </a>
@@ -149,10 +149,10 @@
     <div class="wrap-popular-store">
         <h1>Popular Stores:</h1>
         <div class="row">
-            @foreach(range(0,12) as $v)
-                <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="">Bunion Sleeve</a>
-                </div>
+            @foreach ($popularStores as $s)
+            <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="{{ url('/' . $s->alias.config('config.suffix_coupon')) }}" title="{{ $s->name }}">{{ str_limit($s->name.' '. $s->custom_keywords, 20) }}</a>
+            </div>
             @endforeach
         </div>
     </div>

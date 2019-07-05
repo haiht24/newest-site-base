@@ -538,6 +538,7 @@ h1, h2, h3, h4 {
   padding: 10px;
   display: block;
   width: 100%;
+  color: #333;
 }
 .first-owl .owl-box .owl-title {
   /* create three dot if full box */
@@ -570,7 +571,7 @@ h1, h2, h3, h4 {
   max-width: 75px;
   margin: auto;
 }
-.first-owl .owl-box a {
+.first-owl .owl-box .owl-link {
   font-size: 16px;
   color: #00cc99;
 }

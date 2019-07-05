@@ -113,6 +113,7 @@ $borderCircle: 1;
 	  padding: 10px;
 	  display: block;
 	  width: 100%;
+	  color: #333;
 	}
 	.owl-title { /* create three dot if full box */
 	  padding: 5px;
@@ -144,7 +145,7 @@ $borderCircle: 1;
 	  max-width: 75px;
 	  margin: auto;
 	}
-	a {
+	.owl-link {
 	  font-size: 16px;
 	  color: #00cc99;
 	}
@@ -166,4 +167,5 @@ $borderCircle: 1;
 	}
 
   }
+
 }

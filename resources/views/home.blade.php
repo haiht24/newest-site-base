@@ -44,7 +44,7 @@
             <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="coupons-border-box">
                     <div class="coupons-logo">
-                        <img src="https://res.cloudinary.com/bbbd/image/fetch/w_68/v1542084333/{{ $coupon->logo }}" />
+                        <img src="https://res.cloudinary.com/bbbd/image/fetch/w_68/v1542084333/{{ $coupon->logo }}" alt="{{ $coupon->name }}" />
                     </div>
                     <div class="coupons-content">
                         <div class="coupons-top">

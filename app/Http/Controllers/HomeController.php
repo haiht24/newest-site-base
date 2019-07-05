@@ -31,7 +31,7 @@ class HomeController extends Controller {
         $listStoreId = "('" . implode("','", $listStoreId) . "')";
         $rs =  [
             'topStores' => $topStores,
-            'seoConfig' => $this->getSeoConfig($location),
+            'seoConfig' => $this->getHomeSeoConfig($location),
             'newestStores' => $this->getNewestStores($location),
             'sliderStores' => $this->getSliderStores($location, 20),
             'sliders' => $this->getSliders($location),
@@ -41,9 +41,6 @@ class HomeController extends Controller {
         ];
         return $rs;
 
-    }
-    public function toArray($data) {
-        return json_decode(json_encode($data,1),1);
     }
     public function getCouponsList($listStoreId) {
         $rs = DB::select( DB::raw("
@@ -94,77 +91,25 @@ class HomeController extends Controller {
         $rs = DB::select(DB::raw($query));
         return $rs;
     }
-    public function getSeoConfig($location) {
+    public function getHomeSeoConfig($location) {
         /* SEO Config */
-        $seoConfig = $this->toArray(DB::select(DB::raw("SELECT * FROM seo_configs WHERE countrycode = '$location'")));
-
-        $siteName = '';
-        $siteDesc = '';
         $rs = [];
-        if (!empty($seoConfig)) {
-            foreach ($seoConfig as $s) {
-                if ($s['option_name'] == 'seo_homeTitle') {
-                    $settingHomeTitle = $s['option_value'];
-                }
-                if ($s['option_name'] == 'seo_homeMetaDesc') {
-                    $settingHomeMetaDesc = $s['option_value'];
-                }
-                if ($s['option_name'] == 'seo_homeMetaKeyword') {
-                    $settingHomeMetaKeyword = $s['option_value'];
-                }
-                if ($s['option_name'] == 'seo_siteName') {
-                    $siteName = $s['option_value'];
-                }
-                if ($s['option_name'] == 'seo_siteDescription') {
-                    $siteDesc = $s['option_value'];
-                }
-                if ($s['option_name'] == 'seo_disableHomeNoIndex') {
-                    $disableNoIndex = $s['option_value'];
-                }
-            }
-            if (isset($disableNoIndex)) {
-                $rs['disableNoindex'] = $disableNoIndex;
-            }
+        $seoConfig = $this->seoConfigOf([
+            'title' => 'seo_homeTitle',
+            'desc' => 'seo_homeMetaDesc',
+            'keyword' => 'seo_homeMetaKeyword',
+            'siteName' => 'seo_siteName',
+            'siteDesc' => 'seo_siteDescription',
+            'disableNoIndex' => 'seo_disableHomeNoIndex'
+        ], 1);
+        $rs['title'] = $this->seoConvert($seoConfig['title'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+        $rs['desc'] = $this->seoConvert($seoConfig['desc'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+        $rs['keyword'] = $this->seoConvert($seoConfig['keyword'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+        $rs['disableNoIndex'] = $seoConfig['disableNoIndex'];
 
-            if (isset($settingHomeTitle)) {
-                $settingHomeTitle = $this->seoConvert($settingHomeTitle, $siteName, $siteDesc);
-                $rs['title'] = $settingHomeTitle;
-            }
-            if (isset($settingHomeMetaDesc)) {
-                $settingHomeMetaDesc = $this->seoConvert($settingHomeMetaDesc, $siteName, $siteDesc);
-                $rs['desc'] = $settingHomeMetaDesc;
-            }
-            if (isset($settingHomeMetaKeyword)) {
-                $settingHomeMetaKeyword = $this->seoConvert($settingHomeMetaKeyword, $siteName, $siteDesc);
-                $rs['keyword'] = $settingHomeMetaKeyword;
-            }
-
-        }
         return $rs;
     }
-    public function replaceKeyword($str, $key, $replaceValue) {
-        if (strpos($str, $key) >= 0) {
-            $str = str_replace($key, $replaceValue, $str);
-        }
-        return $str;
-    }
-    public function seoConvert($str, $siteName, $siteDesc, $title = '', $cpTitle = '', $cpDiscount = '', $cashBack = '', $isTitle = false) {
-        $str = $this->replaceKeyword($str, '%%sitename%%', $siteName);
-        $str = $this->replaceKeyword($str, '%%currentmonth%%', date('F'));
-        $str = $this->replaceKeyword($str, '%%currentyear%%', date('Y'));
-        $str = $this->replaceKeyword($str, '%%sitedesc%%', $siteDesc);
-        $str = $this->replaceKeyword($str, '%%sep%%', '-');
-        $str = $this->replaceKeyword($str, '%%title%%', $title);
-        $str = $this->replaceKeyword($str, '%%StickyCouponTitle%%', $cpTitle);
-        $str = $this->replaceKeyword($str, '%%StickyCouponDiscountValue%%', $cpDiscount);
 
-        if(!$isTitle){
-            $str = $this->replaceKeyword($str, '%%CashBack%%',  $cashBack ? ' - Earn up to ' . $cashBack . ' Cash Back ' : '');
-        }else{
-            $str = $this->replaceKeyword($str, '%%CashBack%%', $cashBack ? ' - Up to ' . $cashBack . ' Cash Back ' : '');
-        }
-        return $str;
-    }
 
     /* end for home */
 

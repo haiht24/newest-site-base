@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="en-US">
+<?php
+    if(empty($seoConfig)) {
+        $seoConfig = [
+            'title' => $_SERVER['HTTP_HOST'] . ' | get deals and coupons code',
+            'desc' => 'we are find best deals for you!',
+            'keyword' => 'coupons, deals, coupon code, get deals, order deals, buy deals, store deals'
+        ];
+    }
+?><!DOCTYPE html><html lang="en-US">
 <head>
 <title>
   {{ $seoConfig['title'] }}

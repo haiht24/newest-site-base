@@ -1,7 +1,13 @@
-
-@section('css')
-    @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/home/mix.css')) }}" media="all,handheld"/>
+@section('cssDevMod')
+@parent
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/src/libs/bootstrap.3.3.7.min.css') }}" media="all,handheld"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/home.min.css') }}" media="all,handheld"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/src/owl/owl.carousel.min.css') }}" media="all,handheld"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/src/owl/owl.theme.default.min.css') }}" media="all,handheld"/>
+@stop
+@section('cssMix')
+@parent
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-home.css')) }}" media="all,handheld"/>
 @stop
 
 @extends('app')
@@ -160,12 +166,16 @@
 
 @stop
 
-
+@section('scriptDevMod')
+@parent
+	<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
+	<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+  	<script src="{{ asset('/js/copy.min.js') }}"></script>
+	<script src="{{ asset('/js/src/glide/jquery.glide.min.js') }}"></script>
+	<script src="{{ asset('/js/src/owl/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('/js/run-slider.min.js') }}"></script>
+@stop
 @section('scriptMix')
-    @parent {{--
-    <script src="{{asset('js/src/glide/jquery.glide.min.js')}}"></script>
-    <script src="{{asset('js/src/owl/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('/js/run-slider.min.js') }}"></script>
---}}
+    @parent
     <script src="{{ asset(mix('/js/home/mix-footer.js')) }}"></script>
 @stop

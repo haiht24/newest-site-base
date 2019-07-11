@@ -1,11 +1,13 @@
 {
+    "/js/all/mix-libs.js": "/js/all/mix-libs.js",
     "/js/all/mix-footer.js": "/js/all/mix-footer.js",
     "/css/all/mix.css": "/css/all/mix.css",
     "/js/home/mix-footer.js": "/js/home/mix-footer.js",
-    "/css/home/mix.css": "/css/home/mix.css",
-    "/css/detail/mix.css": "/css/detail/mix.css",
+    "/css/mix-home.css": "/css/mix-home.css",
     "/js/detail/mix-footer.js": "/js/detail/mix-footer.js",
-    "/css/category/mix.css": "/css/category/mix.css",
+    "/css/mix-detail.css": "/css/mix-detail.css",
     "/js/category/mix-footer.js": "/js/category/mix-footer.js",
-    "/css/static/mix.css": "/css/static/mix.css"
+    "/css/mix-category.css": "/css/mix-category.css",
+    "/js/statics/mix-footer.js": "/js/statics/mix-footer.js",
+    "/css/mix-static.css": "/css/mix-static.css"
 }

@@ -3044,32 +3044,32 @@
   font-family: "Century Gothic Regular";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Regular"), url("../fonts/GOTHIC.woff") format("woff");
+  src: local("Century Gothic Regular"), url("fonts/GOTHIC.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Italic"), url("../fonts/GOTHICI.woff") format("woff");
+  src: local("Century Gothic Italic"), url("fonts/GOTHICI.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Bold";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Bold"), url("../fonts/GOTHICB.woff") format("woff");
+  src: local("Century Gothic Bold"), url("fonts/GOTHICB.woff") format("woff");
 }
 @font-face {
   font-family: "Century Gothic Bold Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("Century Gothic Bold Italic"), url("../fonts/GOTHICBI.woff") format("woff");
+  src: local("Century Gothic Bold Italic"), url("fonts/GOTHICBI.woff") format("woff");
 }
 /* gothic */
 @font-face {
   font-family: gothic;
   font-style: normal;
   font-weight: 400;
-  src: local("gothic"), local("gothic"), url("../fonts/gothic?#iefix") format("embedded-opentype"), url("../fonts/gothic/GOTHIC.woff2") format("woff2"), url("../fonts/gothic/GOTHIC.woff") format("woff"), url("../fonts/gothic/gothic.ttf") format("truetype"), url("../fonts/gothic/GOTHIC.svg#gothic") format("svg");
+  src: local("gothic"), local("gothic"), url("fonts/gothic?#iefix") format("embedded-opentype"), url("fonts/gothic/GOTHIC.woff2") format("woff2"), url("fonts/gothic/GOTHIC.woff") format("woff"), url("fonts/gothic/gothic.ttf") format("truetype"), url("fonts/gothic/GOTHIC.svg#gothic") format("svg");
 }
 .header {
   -webkit-box-shadow: 1px 2px 5px 0px #9e9c9e;
@@ -3646,6 +3646,9 @@ i.travel {
 }
 .cat-item-title .c-title {
   color: #099;
+}
+.cat-item-title .c-title:hover {
+  color: red;
 }
 
 .cat-show-more {

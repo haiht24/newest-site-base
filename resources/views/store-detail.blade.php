@@ -1,6 +1,12 @@
-@section('css')
+
+@section('cssDevMod')
+@parent
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/src/libs/bootstrap.3.3.7.min.css') }}" media="all,handheld"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/detail.min.css') }}" media="all,handheld"/>
+@stop
+@section('cssMix')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/detail/mix.css')) }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-detail.css')) }}" media="all,handheld"/>
 @stop
 
 @extends('app')
@@ -15,15 +21,15 @@
     <div class="info">
         <div class="info-item info-image">
             <div class="info-wrap">
-                <img src="https://www.hotdeals.com/public/image/deal_m.png" alt="*"/>
+                <img src="{{ $store->logo }}" alt="logo {{ $store->name }}"/>
             </div>
         </div>
         <div class="info-item info-content">
             <div class="info-content-title">
-                <h1>Title content</h1>
+                <h1>{{ $store->name_keyword }}</h1>
             </div>
             <div class="info-content-desc">
-                Treat yourself to huge savings with Richbrook Discount Code: 6 deals for June 2019.
+                {{ $store->head_description }}
             </div>
         </div>
         <div class="info-item info-go">
@@ -45,42 +51,59 @@
             </div>
             <div class="box-list">
                 {{--item--}}
-                @foreach(range(0,10) as $v)
+                @foreach($store->coupons as $c)
                 <div class="box-item">
                     <div class="box-item-wrap">
                         <div class="box-item-img">
                             <div class="box-img-wrap">
-                                <p class="box-text-top">FREE</p>
-                                <p class="box-text-type">Shipping</p>
+                                @if($c->discount != '' && $c->discount == 100 && $c->currency == '%')
+                                    <p class="box-text-top">Free</p>
+                                @elseif($c->discount != '' && $c->discount > 0)
+                                    <p class="box-text-top">{{ $c->discount }}<span>{{ $c->currency }}</span></p>
+                                    <p class="box-text-type">Discount</p>
+                                @else
+                                    @if (strtolower($c->type) === 'free shipping')
+                                        <p class="box-text-top">Free</p>
+                                        <p class="box-text-type">Shipping</p>
+                                    @else
+                                        <p class="box-text-top">Great</strong>
+                                        <p class="box-text-type">Offer</p>
+                                    @endif
+                                @endif
                             </div>
                         </div>
                         <div class="box-item-body">
                             <div class="box-item-body-content">
                                 <div class="box-item-title">
-                                    <h2>Richbrook-discount-code</h2>
+                                    <h2>{{ $c->title }}</h2>
                                 </div>
                                 <div class="box-item-desc">
-                                    Richbrook provides high-quality products that can help make your life better. There are many ways to save money when you shop on the Richbrook:
+                                    {{ $c->description }}
                                 </div>
+                                @if(!empty($c->expire_date))
                                 <div class="box-item-expire">
-                                    Expires: 11 Sep, 2019
+                                        {{ $c->expire_date }}
                                 </div>
+                                @else
+                                @endif
                             </div>
                             <div class="box-item-btn">
                                 <div class="go-btn box-item-btn-wrap">
-                                    @if(rand(0,1)==0)
-                                    <button class="get-deal btn btn-info">
+                                    @if(strtolower($c->type) !== 'coupon code')
+                                    <button class="get-deal btn btn-info" data-id="{{ $c->go }}">
                                         Click to save
                                     </button>
                                     @else
-                                    <button class="get-code btn btn-danger">
+                                    <button class="get-code btn btn-danger" data-id="{{ $c->go }}">
                                         <div class="wrap-btn-show">
                                             <div class="text-code">
-                                                123456
+                                                {{ substr($c->code, -3, 3) }}
                                             </div>
                                             <div class="text-btn">
-                                                Show coupons code
+                                                Coupons code
                                             </div>
+                                            <span class="code-cover"></span>
+                                            <div class="code-text-image"></div>
                                         </div>
                                     </button>
                                     @endif
@@ -128,9 +151,16 @@
 
 @stop
 
+@section('scriptsDevMod')
+@parent
+<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
+<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+<script src="{{ asset('/js/modules/store-detail/index.min.js') }}"></script>
+<script src="{{ asset('/js/copy.min.js') }}"></script>
+@stop
 @section('scriptMix')
     @parent
-    <script src="{{ asset(mix('/js/all/mix-footer.js')) }}"></script>
+    <script src="{{ asset(mix('/js/detail/mix-footer.js')) }}"></script>
 @stop
 
 @section('addfooter')

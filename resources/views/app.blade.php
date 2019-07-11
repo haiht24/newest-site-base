@@ -3,4 +3,7 @@
 @yield('content')
 </div>
 
+@section('scriptDevMod')
+@parent
+@stop
 @include('blocks.footer')

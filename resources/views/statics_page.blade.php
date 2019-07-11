@@ -1,7 +1,12 @@
 <?php $active = !empty($active)?$active:'';?>
-@section('css')
+@section('cssDevMod')
+@parent
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/src/libs/bootstrap.3.3.7.min.css') }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/static_page.min.css) }}" media="all,handheld"/>
+@endsection
+@section('cssMix')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/static/mix.css')) }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-static.css')) }}" media="all,handheld"/>
 @stop
 @include('blocks.header')
 <div id="content">
@@ -30,4 +35,9 @@
     </div>
 </div>
 
+@section('scriptDevMod')
+@parent
+	<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
+	<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+@stop
 @include('blocks.footer')

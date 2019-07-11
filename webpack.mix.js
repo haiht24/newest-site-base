@@ -26,6 +26,8 @@ var cssLibs = [
 
 /* for app all common */
 	//js
+
+mix.scripts(jsLibs, 'public/js/all/mix-libs.js');
 mix.scripts(appendArr(jsLibs,[
 	'public/js/app-footer.min.js'
 ]), 'public/js/all/mix-footer.js');
@@ -36,6 +38,11 @@ mix.styles([
 ], 'public/css/all/mix.css');
 function useJsCommon() {
 	return 'public/js/all/mix-footer.js';
+}
+function useJsCommonNoMix() {
+	return appendArr(['public/js/all/mix-libs.js'],[
+		'public/js/app-footer.min.js'
+	]);
 }
 function useJsModule(name, child='index', min=1) {
 	return 'public/js/modules/'+name+'/'+child+(min?'.min':'')+'.js';
@@ -52,52 +59,73 @@ if (mix.inProduction()) { //if in: npm run production
 }
 
 //mix.js('resources/assets/js/app.js', 'public/js') .sass('resources/assets/sass/app.scss', 'public/css');
+
+var useMix = [
+	{
+		title: 'home page',
+		js: useJsCommonNoMix().concat([
+			useJsFile('copy'),
+			'public/js/src/glide/jquery.glide.min.js',
+			'public/js/src/owl/owl.carousel.min.js',
+			'public/js/run-slider.min.js'
+		]),
+		mixjs: 'public/js/home/mix-footer.js',
+		css: [
+			'public/css/src/libs/bootstrap.3.3.7.min.css',
+			'public/css/home.min.css',
+			'public/css/src/owl/owl.carousel.min.css',
+			'public/css/src/owl/owl.theme.default.min.css'
+		],
+		mixcss: 'public/css/mix-home.css'
+	},
+	{
+		title: 'detail page',
+		js: useJsCommonNoMix().concat([
+			useJsModule('store-detail'),
+			useJsFile('copy')
+		]),
+		mixjs: 'public/js/detail/mix-footer.js',
+		css: [
+			'public/css/src/libs/bootstrap.3.3.7.min.css',
+			'public/css/detail.min.css'
+		],
+		mixcss: 'public/css/mix-detail.css'
+	},
+	{
+		title: 'category page',
+		js: useJsCommonNoMix().concat([
+			useJsModule('category'),
+		]),
+		mixjs: 'public/js/category/mix-footer.js',
+		css: [
+			'public/css/src/libs/bootstrap.3.3.7.min.css',
+			'public/css/category.min.css',
+		],
+		mixcss: 'public/css/mix-category.css'
+	},
+	{
+		title: 'statics page',
+		js: useJsCommonNoMix().concat([
+		]),
+		mixjs: 'public/js/statics/mix-footer.js',
+		css: [
+			'public/css/src/libs/bootstrap.3.3.7.min.css',
+			'public/css/static_page.min.css',
+		],
+		mixcss: 'public/css/mix-static.css'
+	},
+
+
+];
 /* for home page */
 	//js using scripts(not minify) or combine (minify)
-mix.scripts([
-	useJsCommon(),
-	useJsFile('copy'),
-	'public/js/src/glide/jquery.glide.min.js',
-	'public/js/src/owl/owl.carousel.min.js',
-	'public/js/run-slider.min.js'
-], 'public/js/home/mix-footer.js');
-	//css
-mix.styles([
-	'public/css/src/libs/bootstrap.3.3.7.min.css',
-	'public/css/home.min.css',
-	'public/css/src/owl/owl.carousel.min.css',
-	'public/css/src/owl/owl.theme.default.min.css'
-], 'public/css/home/mix.css');
-
-/* for store detail */
-	//css
-mix.styles([
-	'public/css/src/libs/bootstrap.3.3.7.min.css',
-	'public/css/detail.min.css',
-], 'public/css/detail/mix.css');
-mix.scripts([
-	useJsCommon(),
-	useJsModule('store-detail'),
-	useJsFile('copy')
-], 'public/js/detail/mix-footer.js');
-/* for catgory page */
-	//css
-mix.styles([
-	'public/css/src/libs/bootstrap.3.3.7.min.css',
-	'public/css/category.min.css',
-], 'public/css/category/mix.css');
-	//js
-mix.scripts([
-	useJsCommon(),
-	useJsModule('category'),
-], 'public/js/category/mix-footer.js');
-console.log(useJsModule('category'));
-
-/* for static */
-	//css
-mix.styles([
-	'public/css/src/libs/bootstrap.3.3.7.min.css',
-	'public/css/static_page.min.css',
-], 'public/css/static/mix.css');
+for(let i in useMix) if(useMix.hasOwnProperty(i)) {
+	console.log('mix ---------- '+useMix[i].title);
+	console.log('	js file: ', useMix[i].js);
+	console.log('	css file: ', useMix[i].css);
+	console.log("\n");
+	mix.scripts(useMix[i].js, useMix[i].mixjs);
+	mix.styles(useMix[i].css, useMix[i].mixcss);
+}
 
 mix.browserSync('localhost');

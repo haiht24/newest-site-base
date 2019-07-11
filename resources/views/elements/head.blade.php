@@ -22,7 +22,11 @@
   <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
   <link rel="apple-touch-icon image_src" href="{{ asset('/images/apple-touch-icon.png') }}">
     @yield('css')
+@if(config('config.devmod'))
+	@yield('cssDevMod')
+@else
     @yield('cssMix')
+@endif
     @yield('js')
     @yield('head')
 @yield('header')

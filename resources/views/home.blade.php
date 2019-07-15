@@ -157,7 +157,7 @@
         <div class="row">
             @foreach ($popularStores as $s)
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="{{ url('/' . $s->alias.config('config.suffix_coupon')) }}" title="{{ $s->name }}">{{ str_limit($s->name.' '. $s->custom_keywords, 20) }}</a>
+                <a href="{{ route('store-detail', ['alias' => $s->alias] ) }}" title="{{ $s->name }}">{{ str_limit($s->name.' '. $s->custom_keywords, 20) }}</a>
             </div>
             @endforeach
         </div>
@@ -168,8 +168,8 @@
 
 @section('scriptDevMod')
 @parent
-	<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
-	<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+	<script src="{{ asset('/js/all/mix-libs.js') }}"></script>
+	<script src="{{ asset('/js/app-footer.min.js') }}"></script>
   	<script src="{{ asset('/js/copy.min.js') }}"></script>
 	<script src="{{ asset('/js/src/glide/jquery.glide.min.js') }}"></script>
 	<script src="{{ asset('/js/src/owl/owl.carousel.min.js') }}"></script>

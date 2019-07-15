@@ -1,5 +1,5 @@
 
-$fa-font-path: "../src/font-awesome/fonts";
+$fa-font-path: "src/font-awesome/fonts";
 @import "src/font-awesome/scss/font-awesome.scss";
 @import 'app';
 
@@ -41,7 +41,7 @@ i.travel{background-position:-254.4px -76.8px}
 }
 .category-all {
   display: block;
-  background: url(../../images/bg-category.png);
+  background: url(#{$rootpath}images/bg-category.png);
   background-size: 100% 100%;
   width: 100%;
   height: auto;

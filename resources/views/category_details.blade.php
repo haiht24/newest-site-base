@@ -1,6 +1,11 @@
-@section('css')
+@section('cssDevMod')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/category/mix.css')) }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/src/libs/bootstrap.3.3.7.min.css') }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/category.min.css') }}" media="all,handheld"/>
+@stop
+@section('cssMix')
+    @parent
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-category.css')) }}" media="all,handheld"/>
 @stop
 
 @extends('app')
@@ -86,7 +91,13 @@ $cat = [
 
 @stop
 
+@section('scriptDevMod')
+    @parent
+    <script src="{{ asset('/js/all/mix-libs.js') }}"></script>
+    <script src="{{ asset('/js/app-footer.min.js') }}"></script>
+    <script src="{{ asset('/js/modules/category/index.min.js') }}"></script>
+@stop
 @section('scriptMix')
     @parent
-    <script src="{{ asset(mix('/js/category/mix-footer.js')) }}"></script>
+    <script src="{{ asset(mix('/js/mix-category.js')) }}"></script>
 @stop

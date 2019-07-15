@@ -99,7 +99,7 @@ var useMix = [
 		js: useJsCommonNoMix().concat([
 			useJsModule('category'),
 		]),
-		mixjs: 'public/js/category/mix-footer.js',
+		mixjs: 'public/js/mix-category.js',
 		css: [
 			'public/css/src/libs/bootstrap.3.3.7.min.css',
 			'public/css/category.min.css',

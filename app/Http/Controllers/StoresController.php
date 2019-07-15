@@ -15,15 +15,44 @@ class StoresController extends Controller {
 
         $data = [];
         $storeAlias = strtolower($alias);
-        $store = DB::table('stores')->select('stores.id AS id','name','logo','social_image','store_url','alias','affiliate_url','categories_id','best_store','custom_keywords','coupon_count','description','short_description','head_description','properties.foreign_key_right AS go','meta_title','meta_desc','cash_back_json','cash_back_total','cash_back_term','sid_name','update_coupon_from','note','store_url')
-                ->leftJoin('properties', 'stores.id','=', 'properties.foreign_key_left')
-                ->where('stores.alias','=',$storeAlias)
-                ->where('stores.countrycode','=','US')
-                ->where('stores.status','=','published')
-                ->first();
+        $store = $this->getStore($alias);
         $storeId = $store->id;
         $store->name_keyword = $this->nameWithKeyword($store->name);
-        $coupons = DB::select( DB::raw(
+        $coupons = $this->getCoupons($storeId);
+        $childStores = DB::select( DB::raw(
+            "SELECT name,alias
+                    FROM stores
+                    where store_url='{$store->store_url}'
+                    AND countrycode='US'
+                    AND alias != '$storeAlias'
+                    AND status='published'
+                    "
+        ) );
+
+        $store->coupons = $coupons;
+        $data['store'] = $store;
+        $data = $this->__getSEOConfig($data);//dd($data);
+        return view('store-detail')->with($data);
+
+    }
+
+    public function getMoreCoupons($storeId, $offset='', $limit = 20) {
+        $data['coupons'] = $this->getCoupons($storeId, $offset, $limit);
+        return view('elements.coupons_item_more')->with($data);
+    }
+
+    public function getStore($alias) {
+        $storeAlias = strtolower($alias);
+        return DB::table('stores')->select('stores.id AS id','name','logo','social_image','store_url','alias','affiliate_url','categories_id','best_store','custom_keywords','coupon_count','description','short_description','head_description','properties.foreign_key_right AS go','meta_title','meta_desc','cash_back_json','cash_back_total','cash_back_term','sid_name','update_coupon_from','note','store_url')
+            ->leftJoin('properties', 'stores.id','=', 'properties.foreign_key_left')
+            ->where('stores.alias','=',$storeAlias)
+            ->where('stores.countrycode','=','US')
+            ->where('stores.status','=','published')
+            ->first();
+    }
+    public function getCoupons($storeId, $offset='', $limit = 20) {
+        $offset = $offset?"OFFSET $offset":'';
+        return DB::select( DB::raw(
             "SELECT c.id,c.title,c.currency,c.exclusive,c.description,c.created_at,c.expire_date,c.discount,c.coupon_code AS code,c.coupon_type AS type,c.coupon_image AS image,c.sticky,c.verified,c.comment_count,c.latest_comments,c.number_used,c.cash_back,c.note,c.top_order,p.foreign_key_right AS go
                     FROM coupons c
                     JOIN properties p ON c.id = p.foreign_key_left
@@ -47,25 +76,12 @@ class StoresController extends Controller {
                     c.top_order ASC,
                     c.created_at DESC,
                     c.title ASC
-                    LIMIT 20
+                    $offset LIMIT $limit
                     "
         ) );
-        $childStores = DB::select( DB::raw(
-            "SELECT name,alias
-                    FROM stores
-                    where store_url='{$store->store_url}'
-                    AND countrycode='US'
-                    AND alias != '$storeAlias'
-                    AND status='published'
-                    "
-        ) );
-
-        $store->coupons = $coupons;
-        $data['store'] = $store;
-        $data = $this->__getSEOConfig($data);//dd($data);
-        return view('store-detail')->with($data);
 
     }
+
     public function nameWithKeyword($name) {
         if(stripos($name, ' coupon') || stripos($name, ' coupons')){
             return $name .= ' & Promo codes';

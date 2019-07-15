@@ -13,9 +13,6 @@
 
 Route::get('/', "HomeController@index");
 
-Route::get('/detail', function () {
-    return view('store-detail');
-});
 
 // for static page
 Route::get('/about-us', function () {
@@ -42,5 +39,6 @@ Route::get('/category/{alias}', 'CategoryController@CategoriesDetail');
 Route::get('/category/{alias}/{offset}', 'CategoryController@getMoreStores');
 
 //stores
-Route::get('/stores/{alias}-coupons', 'StoresController@getDetails')->name('store-detail');
+Route::get('/stores/{alias}/coupons', 'StoresController@getDetails')->name('store-detail');
+Route::get('/stores/more/{storeId}/{offset}', 'StoresController@getMoreCoupons')->name('store-detail-more');
 

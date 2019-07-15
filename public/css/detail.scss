@@ -330,6 +330,19 @@
 		  }
 		}
 	}
+  	.show-more {
+	  width: 100%;
+	  text-align: center;
+	  margin-bottom: 10px;
+	  .btn {
+		width: 100%;
+		font-weight: bold;
+	  }
+	  .btn:hover {
+		background-color: #f44242;
+		color: #fff;
+	  }
+	}
   	.box-item-wrap, .wrap-side-bar {
 	  border:1px solid #ccd;
 	  border-radius: 2px;

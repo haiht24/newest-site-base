@@ -90,11 +90,11 @@ $cat = [
 
 @section('scriptDevMod')
 @parent
-	<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
-	<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+	<script src="{{ asset('/js/all/mix-libs.js') }}"></script>
+	<script src="{{ asset('/js/app-footer.min.js') }}"></script>
 	<script src="{{ asset('/js/modules/category/index.min.js') }}"></script>
 @stop
 @section('scriptMix')
     @parent
-    <script src="{{ asset(mix('/js/category/mix-footer.js')) }}"></script>
+    <script src="{{ asset(mix('/js/mix-category.js')) }}"></script>
 @stop

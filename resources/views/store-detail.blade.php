@@ -14,9 +14,9 @@
 @section('content')
     @parent
     <ul class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">category</a></li>
-        <li class="active">Coupons title</li>
+        <li><a href="{{ url('/') }}" title="Home page {{ $_SERVER['HTTP_HOST'] }}">Home</a></li>
+        <li><a href="{{ url('/category') }}" title="all categories">category</a></li>
+        <li class="active">{{ $store->name }}</li>
     </ul>
     <div class="info">
         <div class="info-item info-image">
@@ -52,69 +52,15 @@
             <div class="box-list">
                 {{--item--}}
                 @foreach($store->coupons as $c)
-                <div class="box-item">
-                    <div class="box-item-wrap">
-                        <div class="box-item-img">
-                            <div class="box-img-wrap">
-                                @if($c->discount != '' && $c->discount == 100 && $c->currency == '%')
-                                    <p class="box-text-top">Free</p>
-                                @elseif($c->discount != '' && $c->discount > 0)
-                                    <p class="box-text-top">{{ $c->discount }}<span>{{ $c->currency }}</span></p>
-                                    <p class="box-text-type">Discount</p>
-                                @else
-                                    @if (strtolower($c->type) === 'free shipping')
-                                        <p class="box-text-top">Free</p>
-                                        <p class="box-text-type">Shipping</p>
-                                    @else
-                                        <p class="box-text-top">Great</strong>
-                                        <p class="box-text-type">Offer</p>
-                                    @endif
-                                @endif
-                            </div>
-                        </div>
-                        <div class="box-item-body">
-                            <div class="box-item-body-content">
-                                <div class="box-item-title">
-                                    <h2>{{ $c->title }}</h2>
-                                </div>
-                                <div class="box-item-desc">
-                                    {{ $c->description }}
-                                </div>
-                                @if(!empty($c->expire_date))
-                                <div class="box-item-expire">
-                                        {{ $c->expire_date }}
-                                </div>
-                                @else
-                                @endif
-                            </div>
-                            <div class="box-item-btn">
-                                <div class="go-btn box-item-btn-wrap">
-                                    @if(strtolower($c->type) !== 'coupon code')
-                                    <button class="get-deal btn btn-info" data-id="{{ $c->go }}">
-                                        Click to save
-                                    </button>
-                                    @else
-                                    <button class="get-code btn btn-danger" data-id="{{ $c->go }}">
-                                        <div class="wrap-btn-show">
-                                            <div class="text-code">
-                                                {{ substr($c->code, -3, 3) }}
-                                            </div>
-                                            <div class="text-btn">
-                                                Coupons code
-                                            </div>
-                                            <span class="code-cover"></span>
-                                            <div class="code-text-image"></div>
-                                        </div>
-                                    </button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					@include('elements.coupons_item')
                 @endforeach
                 {{--end item--}}
             </div>
+
+            <div id="show-more" class="show-more" data-url="{{ route('store-detail-more',['storeId'=>$store->id,'offset'=>'']) }}">
+                <button class="btn btn-success">SHOW MORE...</button>
+            </div>
+
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -151,10 +97,10 @@
 
 @stop
 
-@section('scriptsDevMod')
+@section('scriptDevMod')
 @parent
-<script src="{{ asset('public/js/all/mix-libs.js') }}"></script>
-<script src="{{ asset('public/js/app-footer.min.js') }}"></script>
+<script src="{{ asset('/js/all/mix-libs.js') }}"></script>
+<script src="{{ asset('/js/app-footer.min.js') }}"></script>
 <script src="{{ asset('/js/modules/store-detail/index.min.js') }}"></script>
 <script src="{{ asset('/js/copy.min.js') }}"></script>
 @stop

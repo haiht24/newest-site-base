@@ -1,3 +1,7 @@
+<?php
+$aff_url = !empty($c->product_link) ? $c->product_link : ( !empty($store->affiliate_url) ? $store->affiliate_url : $store->store_url );
+
+?>
                 <div class="box-item">
                     <div class="box-item-wrap">
                         <div class="box-item-img">
@@ -36,11 +40,11 @@
                             <div class="box-item-btn">
                                 <div class="go-btn box-item-btn-wrap">
                                     @if(strtolower($c->type) !== 'coupon code')
-                                    <button class="get-deal btn btn-info" data-id="{{ $c->go }}">
+                                    <button class="get-deal btn btn-info" data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                         Click to save
                                     </button>
                                     @else
-                                    <button class="get-code btn btn-danger" data-id="{{ $c->go }}">
+                                    <button class="get-code btn btn-danger" data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                         <div class="wrap-btn-show">
                                             <div class="text-code">
                                                 {{ substr($c->code, -3, 3) }}

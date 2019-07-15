@@ -41,4 +41,7 @@ Route::get('/category/{alias}/{offset}', 'CategoryController@getMoreStores');
 //stores
 Route::get('/stores/{alias}/coupons', 'StoresController@getDetails')->name('store-detail');
 Route::get('/stores/more/{storeId}/{offset}', 'StoresController@getMoreCoupons')->name('store-detail-more');
+//go coupons
+Route::get('/coupons/detail/{goId}', 'StoresController@getGo')->name('coupon-detail');
+
 

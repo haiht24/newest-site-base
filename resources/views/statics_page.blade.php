@@ -16,16 +16,16 @@
                 <div class="static-menu">
                     <ul class="static-menu-item">
                         <li class="static-item {{$active=='aboutus'?' active':''}}">
-                            <a href="{{ route('aboutus') }}">About us</a>
+                            <a href="{{ route('aboutus') }}" title="about us">About us</a>
                         </li>
                         <li class="static-item {{$active=='contactus'?' active':''}}">
-                            <a href="{{ route('contactus') }}">Contact us</a>
+                            <a href="{{ route('contactus') }}" title="contact us">Contact us</a>
                         </li>
                         <li class="static-item {{$active=='privacy_policy'?' active':''}}">
-                            <a href="{{ route('privacy_policy') }}">Privacy Policy</a>
+                            <a href="{{ route('privacy_policy') }}" title="privacy policy">Privacy Policy</a>
                         </li>
                         <li class="static-item {{$active=='terms'?' active':''}}">
-                            <a href="{{ route('termsPage') }}">Terms & Conditions</a>
+                            <a href="{{ route('termsPage') }}" title="term and conditions">Terms & Conditions</a>
                         </li>
                     </ul>
                 </div>

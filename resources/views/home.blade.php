@@ -46,36 +46,39 @@
     <div class="coupons-list">
         <div class="row">
             {{-- item --}}
-            @foreach($couponsList as $coupon)
+            @foreach($couponsList as $c)
+                <?php
+                $aff_url = !empty($c->product_link) ? $c->product_link : ( !empty($c->affiliate_url) ? $c->affiliate_url : $c->store_url );
+                ?>
             <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="coupons-border-box">
                     <div class="coupons-logo">
-                        <img src="https://res.cloudinary.com/bbbd/image/fetch/w_68/v1542084333/{{ $coupon->logo }}" alt="{{ $coupon->name }}" />
+                        <img src="https://res.cloudinary.com/bbbd/image/fetch/w_68/v1542084333/{{ $c->logo }}" alt="{{ $c->name }}" />
                     </div>
                     <div class="coupons-content">
                         <div class="coupons-top">
                             <div>
-                                <span class="cp-store-name">{{ $coupon->name }}</span>
-                                @if(!empty($coupon->code))<span class="cp-type">CODE</span>@endif
+                                <span class="cp-store-name">{{ $c->name }}</span>
+                                @if(!empty($c->code))<span class="cp-type">CODE</span>@endif
                             </div>
                         </div>
                         <div class="coupons-body">
                             <div>
-                                <strong>{{ $coupon->title }}</strong>
+                                <strong>{{ $c->title }}</strong>
                             </div>
-                            {{ !empty($coupon->description)?$coupon->description : $coupon->short_description }}
+                            {{ !empty($c->description)?$c->description : $c->short_description }}
                         </div>
                         <div class="coupons-footer">
                             <div class="go-btn bottom_code code_reset bottom_re">
                                 @if(!empty($coupon->code))
-                                <a href="" rel="nofollow noopener" class="btn get-code coupons-click coupon_button coupon_button_cover">
+                                <a href="" rel="nofollow noopener" class="btn btn-go get-code coupon_button coupon_button_cover"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                     <span class="giv2-text">Get Code</span>
-                                    <span class="giv2-code">{{ $coupon->code }}</span>
+                                    <span class="giv2-code">{{ $c->code }}</span>
                                     <span class="giv2-cover"></span>
                                     <span class="giv2-image"></span>
                                 </a>
                                 @else
-                                <a href="" rel="nofollow noopener" class="btn get-deal coupons-click coupons-getdeal">
+                                <a href="" rel="nofollow noopener" class="btn btn-go get-deal coupons-getdeal"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                     <span class="giv2-text">Get Deals</span>
                                 </a>
                                 @endif

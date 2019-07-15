@@ -20,9 +20,11 @@
     </ul>
     <div class="info">
         <div class="info-item info-image">
+            <a href="{{ ( !empty($store->affiliate_url) ? $store->affiliate_url : $store->store_url ) }}" title="{{ $store->name }} link store">
             <div class="info-wrap">
                 <img src="{{ $store->logo }}" alt="logo {{ $store->name }}"/>
             </div>
+            </a>
         </div>
         <div class="info-item info-content">
             <div class="info-content-title">
@@ -34,9 +36,11 @@
         </div>
         <div class="info-item info-go">
             <div class="info-button">
+                <a href="{{ ( !empty($store->affiliate_url) ? $store->affiliate_url : $store->store_url ) }}" title="{{ $store->name }} link store">
                 <button class="btn btn-info">
                     GO TO RICHBROOK...
                 </button>
+                </a>
             </div>
         </div>
     </div>

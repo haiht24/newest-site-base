@@ -37,21 +37,55 @@ class StoresController extends Controller {
             $data = $this->__getSEOConfig($data);//dd($data);
             Cache::put($key, $data, 1440);
         }
+        //dd($data);
         return view('store-detail')->with($data);
 
     }
 
     public function getMoreCoupons($storeId, $offset='', $limit = 20) {
-        $data['coupons'] = $this->getCoupons($storeId, $offset, $limit);
+        $data = [];
+        $data['store'] = $this->getStore('', $storeId);
+        $data['store']->coupons = $this->getCoupons($storeId, $offset, $limit);
         return view('elements.coupons_item_more')->with($data);
     }
+    public function getGo($goId) {
+        $data = [];
+         $coupons = DB::select( DB::raw("
+            SELECT c.id,  c.store_id, c.title,  c.currency,  c.exclusive,  c.description,  c.expire_date,  c.comment_count,  c.discount,  c.comment_count,  c.discount,  c.coupon_type AS type,  c.coupon_code AS code, coupon_type AS type,  c.sticky,  p.foreign_key_right AS go 
+            FROM coupons AS c INNER JOIN properties AS p ON p.foreign_key_left = c.id AND p.key = 'coupon' 
+            WHERE p.foreign_key_right ='$goId' LIMIT 1
+        "))[0];//dd($data);
+        $data['c'] = $coupons;
+        $data['store'] = $this->getStore('', $coupons->store_id);
 
-    public function getStore($alias) {
+        $data['relatedCp'] = DB::select(DB::raw(
+            "SELECT c.title,p.foreign_key_right
+                    FROM coupons c
+                    LEFT JOIN properties p ON c.id = p.foreign_key_left
+                    WHERE c.store_id = '{$coupons->store_id}'
+                    AND c.status = 'published'
+                    AND (c.expire_date >= NOW() OR c.expire_date IS NULL)
+                    ORDER BY 
+                    CASE 
+                        WHEN c.verified = 1 THEN 5 
+                        WHEN c.sticky = 'top' THEN 4 
+                        WHEN c.sticky = 'hot' THEN 3 
+                        WHEN c.sticky = 'none' THEN 2 
+                        WHEN c.sticky IS NULL THEN 1 
+                    END DESC, c.top_order ASC, c.created_at DESC
+                    LIMIT 3
+                    "
+        ));
+        return view('elements.modals_coupon_go')->with($data);
+    }
+    /* function helper */
+    public function getStore($alias='', $id='') {
         $storeAlias = strtolower($alias);
-        return DB::table('stores')->select('stores.id AS id','name','logo','social_image','store_url','alias','affiliate_url','categories_id','best_store','custom_keywords','coupon_count','description','short_description','head_description','properties.foreign_key_right AS go','meta_title','meta_desc','cash_back_json','cash_back_total','cash_back_term','sid_name','update_coupon_from','note','store_url')
-            ->leftJoin('properties', 'stores.id','=', 'properties.foreign_key_left')
-            ->where('stores.alias','=',$storeAlias)
-            ->where('stores.countrycode','=','US')
+        $store = DB::table('stores')->select('stores.id AS id','name','logo','social_image','store_url','alias','affiliate_url','categories_id','best_store','custom_keywords','coupon_count','description','short_description','head_description','properties.foreign_key_right AS go','meta_title','meta_desc','cash_back_json','cash_back_total','cash_back_term','sid_name','update_coupon_from','note','store_url')
+            ->leftJoin('properties', 'stores.id','=', 'properties.foreign_key_left');
+        if(!empty($alias)) $store = $store->where('stores.alias','=',$storeAlias);
+        else if(!empty($id)) $store = $store->where('stores.id', '=', $id);
+        return $store->where('stores.countrycode','=','US')
             ->where('stores.status','=','published')
             ->first();
     }

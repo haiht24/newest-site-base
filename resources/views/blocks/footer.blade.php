@@ -2,8 +2,6 @@
 
 
 @include('elements.foot')
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 @yield('script')
 @if(config('config.devmod'))
     @yield('scriptDevMod')
@@ -11,4 +9,24 @@
     @yield('scriptMix')
 @endif
 @yield('addfooter')
+
+
+@if(!empty($_GET['c']))
+    {{--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> --}}
+    <div class="store-modal">
+        <div class="modal fade" id="myModal" role="dialog">
+        </div>
+    </div>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/modals.min.css') }}" />
+    <script>
+        var c_url = '{{ route('coupon-detail', [ 'goId'=>$_GET['c'] ]) }}';
+        $.get(c_url, function(data) {
+            $('#myModal').html(data);
+            $('#myModal').modal('show');
+            detectCopy();
+            $('.coupon-related .location').click(function(){ openGoEv(this); });
+        });
+    </script>
+@endif
 {!! '</body></html>' !!}

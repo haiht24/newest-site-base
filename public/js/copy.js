@@ -3,7 +3,7 @@ var copySp = document.queryCommandSupported('copy');
 if(!copySp) {
     document.write('<'+'script src="js/src/zerocopy/ZeroClipboard.min.js"><'+'/script>');
     // Run the demo
-    $(document).ready(function() {
+    function detectCopy() {
         var clip = new ZeroClipboard($("#btn-copy"));
 
         clip.on("ready", function () {
@@ -18,7 +18,7 @@ if(!copySp) {
             console.info('error[name="' + event.name + '"]: ' + event.message);
             ZeroClipboard.destroy();
         });
-    });
+    };
 }else {
 
     function copyExec(is) {
@@ -26,11 +26,11 @@ if(!copySp) {
         document.execCommand("Copy");
     }
 
-    $(document).ready(function () {
+    function detectCopy() {
         $('.wrap-copy').click(function () {
             copyExec($('#select-copy'));
             $('.input-copied').finish().show();
             $('.input-copied').fadeOut(2000);
         });
-    });
+    };
 }

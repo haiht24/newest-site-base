@@ -1,4 +1,5 @@
 $( document ).ready(function(){
+    /* for search box select 2 */
     var home = $('#home').val();
     $(".search-form-header").select2({
         placeholder: "Search for Stores...",
@@ -29,9 +30,9 @@ $( document ).ready(function(){
     }).on("select2-selecting", function(e) {
         if (e.object.type == 'store') {
             var alias = e.object.note === 'ngach' ? e.object.alias : e.object.alias;
-            window.location = home+"/" + alias;
+            window.location = home+"/stores/"+alias+"/coupons";
         } else if (e.object.type == 'coupon') {
-            window.open(home+"/" + '/' + e.object.store_alias + '?c=' + e.object.coupon_key, '_blank');
+            window.open(home+"/stores/" + e.object.store_alias + '/coupons?c=' + e.object.coupon_key, '_blank');
             window.open(home+"/go/" + '/' + e.object.coupon_key, '_self');
         } else {
             window.open('?d=' + e.object.coupon_key, '_blank');
@@ -82,11 +83,24 @@ $( document ).ready(function(){
     function searchFormatSelection(repo) {
         return repo.title;
     }
+
+
+});
+/* for coupons go */
+function openGo(aff, c) {
+    location.href = aff;
+    window.open('?c=' + c, '_blank');
+}
+function openGoEv(is) {
+    var aff = $(is).attr('data-aff'),
+        c = $(is).attr('data-goid');
+    openGo(aff, c);
+}
+$('.go-btn .get-code').click(function(){
+    openGoEv(this);
+});
+$('.go-btn .get-deal').click(function(){
+    openGoEv(this);
 });
 
 
-$(document).ready(function(){
-    $('go-btn get-code').click(function(){
-
-    })
-});

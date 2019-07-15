@@ -20,7 +20,7 @@ class HomeController extends Controller {
         $data = Cache::remember('home_page', 1440, function() use ($location){
             return $this->getDataHome($location);
         });
-        //dd($data['popularStores'][0]);
+        //dd($data['couponsList'][0]);
         return view('home')->with($data);
     }
     /* for homepage */

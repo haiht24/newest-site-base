@@ -3,11 +3,11 @@ $(document).ready(function(){
     function catGetMore() {
         offset += 20;
         var url = $('#show-more').attr('data-url') + '/' + offset;
-        $('#show-more button').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');
+        $('#show-more button').html('...Loading...');
 
         $.get(url, function (data) {
             if(data.length==0) $('#show-more').remove();
-            $('#cat-list').append(data);
+            $('#coupons-list').append(data);
             $('#show-more button').html('SHOW MORE...');
         });
     }

@@ -21,6 +21,14 @@ class CategoryController extends Controller {
     public function index() {
 
         $data = [];
+        $data = Cache::remember('category', 1440, function() {
+            return $this->getDataIndex();
+        });
+        //dd($data['cat']);
+        return view('category')->with($data);
+    }
+    public function getDataIndex() {
+        $data = [];
         $seoConfig = $this->seoConfigOf([
             'title' => 'seo_CatTitle',
             'keyword' => '',
@@ -35,30 +43,35 @@ class CategoryController extends Controller {
 
         $data['seoConfig'] = $rs;
         $data['cats'] = $this->allCatAndStores(10);
-        //dd($data['cat']);
-        return view('category')->with($data);
+        return $data;
     }
     public function CategoriesDetail($alias, Re $request) {
-        $cat = $this->getCatByAlias($alias)[0];
-        $stores = $this->getStoresInCat($cat->id, $this->offset);
-        $data = [];
-        $seoConfig = $this->seoConfigOf([
-            'title' => 'seo_CatTitle',
-            'keyword' => '',
-            'desc' => 'seo_CatDesc',
-            'siteName' => 'seo_siteName',
-            'siteDesc' => 'seo_siteDescription'
-        ], 1);
-        $rs = [];
-        $rs['title'] = $this->seoConvert($seoConfig['title'], $seoConfig['siteName'], $seoConfig['siteDesc']);
-        $rs['desc'] = $this->seoConvert($seoConfig['desc'], $seoConfig['siteName'], $seoConfig['siteDesc']);
-        $rs['keyword'] = $this->seoConvert($seoConfig['keyword'], $seoConfig['siteName'], $seoConfig['siteDesc']);
-        $rs['title'] = $cat->name . ' | ' .$rs['title'];
+        $key = "category_$alias";
+        if(Cache::has($key)) {
+            $data = Cache::get($key);
+        } else {
+            $cat = $this->getCatByAlias($alias)[0];
+            $stores = $this->getStoresInCat($cat->id, $this->offset);
+            $data = [];
+            $seoConfig = $this->seoConfigOf([
+                'title' => 'seo_CatTitle',
+                'keyword' => '',
+                'desc' => 'seo_CatDesc',
+                'siteName' => 'seo_siteName',
+                'siteDesc' => 'seo_siteDescription'
+            ], 1);
+            $rs = [];
+            $rs['title'] = $this->seoConvert($seoConfig['title'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+            $rs['desc'] = $this->seoConvert($seoConfig['desc'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+            $rs['keyword'] = $this->seoConvert($seoConfig['keyword'], $seoConfig['siteName'], $seoConfig['siteDesc']);
+            $rs['title'] = $cat->name . ' | ' . $rs['title'];
 
-        $data['seoConfig'] = $rs;
-        $data['cats'] = $this->allCategory();
-        $data['cat'] = $cat;
-        $data['stores'] = $stores;
+            $data['seoConfig'] = $rs;
+            $data['cats'] = $this->allCategory();
+            $data['cat'] = $cat;
+            $data['stores'] = $stores;
+            Cache::put($key, $data, 1440);
+        }
         return view('category_details')->with($data);
 
     }

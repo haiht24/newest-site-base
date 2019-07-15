@@ -3155,6 +3155,219 @@
   margin-top: 124px;
 }
 
+.form-search .select2-container {
+  height: auto;
+  background: 0 0;
+  box-shadow: none;
+  border: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  zoom: 1;
+  vertical-align: middle;
+}
+.form-search .select2-container .select2-choices {
+  border-radius: 2px;
+  line-height: 30px;
+  border-color: #ccc;
+  color: #555;
+  background: 0 #fff;
+  padding: 0;
+  height: auto !important;
+  margin: 0;
+  position: relative;
+  cursor: text;
+  overflow: hidden;
+  min-height: 26px;
+}
+.form-search .select2-container .select2-choices .select2-search-field {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  float: left;
+  list-style: none;
+  width: 100%;
+}
+.form-search .select2-container .select2-choices .select2-search-field .select2-offscreen {
+  width: 1px !important;
+  height: 1px !important;
+  position: absolute !important;
+  clip: rect(0 0 0 0) !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  outline: 0 !important;
+  left: 0 !important;
+}
+.form-search .select2-container .select2-choices .select2-search-field input {
+  border-radius: 2px;
+  line-height: 30px;
+  padding: 6px 12px;
+  width: 100% !important;
+  border: 2px solid red;
+}
+.form-search .select2-offscreen {
+  width: 1px !important;
+  height: 1px !important;
+  position: absolute !important;
+  clip: rect(0 0 0 0) !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  outline: 0 !important;
+  left: 0 !important;
+}
+
+#s2id_autogen1 .select2-display-none {
+  display: none;
+}
+#s2id_autogen1 .select2-drop {
+  width: 100%;
+  margin-top: -1px;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  background: #fff;
+  color: #000;
+  border: 1px solid #aaa;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+}
+#s2id_autogen1 .select2-drop .select2-results {
+  max-height: 200px;
+  padding: 0 0 0 4px;
+  margin: 4px 4px 4px 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.select2-drop-mask {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  min-width: 100%;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  z-index: 9998;
+  background-color: #fff;
+  filter: alpha(opacity=0);
+}
+
+.select2-drop-active {
+  border-color: #66afe9;
+}
+
+.select2-drop {
+  width: 100%;
+  margin-top: -1px;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  background: #fff;
+  color: #000;
+  border: 1px solid #aaa;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+}
+
+.select2-results {
+  max-height: 200px;
+  padding: 0 0 0 4px;
+  margin: 4px 4px 4px 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.select2-results .select2-ajax-error, .select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+  background: #f4f4f4;
+  display: list-item;
+  padding-left: 5px;
+}
+
+.select2-results li {
+  list-style: none;
+}
+
+.search-form .select2-container-multi .select2-choices .select2-search-choice {
+  line-height: 25px;
+}
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  color: #555;
+  background: #fff;
+  border-color: #ccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  padding: 3px 5px 3px 18px;
+  margin: 6px 0 3px 5px;
+  position: absolute;
+  cursor: default;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  user-select: none;
+}
+
+.select2-container-multi .select2-choices li {
+  float: left;
+  list-style: none;
+}
+
+.select2-container-multi .select2-search-choice-close {
+  left: 3px;
+}
+
+.select2-search-choice-close {
+  margin-top: -7px;
+  top: 50%;
+}
+
+.select2-search-choice-close {
+  display: block;
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  right: 3px;
+  top: 19px;
+  font-size: 1px;
+  outline: 0;
+  background: url(../../js/src/libs/select2/select2.png) right top no-repeat;
+}
+
+.select2-result-label {
+  cursor: pointer;
+}
+.select2-result-label :hover {
+  background-color: #337AB7;
+}
+
 @media screen and (min-width: 505px) {
   #content {
     margin-top: 124px;

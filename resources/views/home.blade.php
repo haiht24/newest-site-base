@@ -66,17 +66,17 @@
                             {{ !empty($coupon->description)?$coupon->description : $coupon->short_description }}
                         </div>
                         <div class="coupons-footer">
-                            <div class="bottom_code code_reset bottom_re">
+                            <div class="go-btn bottom_code code_reset bottom_re">
                                 @if(!empty($coupon->code))
-                                <a href="" rel="nofollow noopener" class="btn btn-go coupons-click coupon_button coupon_button_cover">
+                                <a href="" rel="nofollow noopener" class="btn get-code coupons-click coupon_button coupon_button_cover">
                                     <span class="giv2-text">Get Code</span>
                                     <span class="giv2-code">{{ $coupon->code }}</span>
                                     <span class="giv2-cover"></span>
                                     <span class="giv2-image"></span>
                                 </a>
                                 @else
-                                <a href="" rel="nofollow noopener" class="btn btn-go coupons-click coupons-getdeal">
-                                    <span class="giv2-text">Get Code</span>
+                                <a href="" rel="nofollow noopener" class="btn get-deal coupons-click coupons-getdeal">
+                                    <span class="giv2-text">Get Deals</span>
                                 </a>
                                 @endif
                             </div>

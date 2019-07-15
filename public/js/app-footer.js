@@ -83,3 +83,10 @@ $( document ).ready(function(){
         return repo.title;
     }
 });
+
+
+$(document).ready(function(){
+    $('go-btn get-code').click(function(){
+
+    })
+});

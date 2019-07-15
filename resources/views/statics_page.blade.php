@@ -24,6 +24,9 @@
                         <li class="static-item {{$active=='privacy_policy'?' active':''}}">
                             <a href="{{ route('privacy_policy') }}">Privacy Policy</a>
                         </li>
+                        <li class="static-item {{$active=='terms'?' active':''}}">
+                            <a href="{{ route('termsPage') }}">Terms & Conditions</a>
+                        </li>
                     </ul>
                 </div>
 

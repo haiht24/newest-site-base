@@ -18,10 +18,13 @@ function appendArr(resArr, arr) {
 /* for function common */
 var jsLibs = [
 	'public/js/src/libs/jquery.3.2.1.min.js',
-	'public/js/src/libs/bootstrap.3.3.7.min.js'
+	'public/js/src/libs/bootstrap.3.3.7.min.js',
+	'public/js/src/libs/select2/select2.min.js'
 ];
 var cssLibs = [
-	'public/css/src/libs/bootstrap.3.3.7.min.css'
+	'public/css/src/libs/bootstrap.3.3.7.min.css',
+	'public/js/src/libs/select2/select2.min.css',
+	'public/js/src/libs/select2/select2-bootstrap.min.css'
 ];
 
 /* for app all common */

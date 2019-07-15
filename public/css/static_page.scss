@@ -39,3 +39,98 @@
   }
 }
 
+/*Minh CSS Footer*/
+@media (min-width: 1200px){
+	.container {
+		width: 970px;
+	}
+}
+@media (min-width: 768px)
+{
+	.contact-forms .contact-form {
+		max-width: 800px;
+		margin: auto;
+		padding: 70px 0!important;
+	}
+	.contact-forms .f-row {
+		padding: 10px 100px;
+	}
+}
+.show-page-text{
+	.page-boxer{
+		padding: 60px 45px;
+		h3{
+			margin: 0 0 30px;
+			padding: 10px;
+		}
+		.body-page-boxer{
+			.contact-info{
+				color: #4d4d4d;
+				font-size: 18px;
+			}
+			.contact-form{
+				border-bottom: 1px solid #ccc;
+				.f-row{
+					input,button{
+						height: 42px;
+						border-radius: 2px;
+					}
+					textarea{
+						height: 200px;
+						resize: vertical;
+					}
+					.btn-submit {
+						text-transform: uppercase;
+						font-size: 16px;
+						background-color: #7FBA00;
+						border: 0;
+						color: #FFF!important;
+					}
+				}
+			}
+			.other-contact{
+				padding: 50px 0;
+				text-align: center;
+				.contact-header{
+					font-size: 35px;
+					color: #191919;
+				}
+				.contact-desc{
+					margin-top: 30px;
+					font-size: 16px;
+					color: #4d4d4d;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.contact-forms .f-row {
+		padding: 10px 15px;
+	}
+	.contact-forms .contact-form {
+		padding: 70px 0!important;
+	}
+}
+
+@media (max-width: 479px) {
+	.show-page-text .page-boxer {
+		padding: 0 15px;
+	}
+	.show-page-text .page-boxer .body-page-boxer .contact-info{
+		font-size: 16px;
+	}
+}
+@media (max-width: 479px) {
+	.static_container .static-content{
+		padding: 10px;
+	}
+	.show-page-text .page-boxer .body-page-boxer .other-contact .contact-header{
+		font-size: 30px;
+	}
+	.contact-forms .f-row {
+		padding: 10px 5px;
+	}
+}
+

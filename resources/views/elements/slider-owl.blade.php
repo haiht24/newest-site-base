@@ -4,7 +4,7 @@
 @if($count<12)
 <div>
     <div class="gradient-border-bottom">
-        <a href="{{ url('/' . $store->alias . config('config.suffix_coupon')) }}" title="{{ $store->name }}">
+        <a href="{{ route('store-detail', ['alias' => $store->alias] ) }}" title="{{ $store->name }}">
         <div class="gradient-border owl-box">
             <div class="owl-box-img">
                 <img src="https://res.cloudinary.com/bbbd/image/fetch/w_100/v1542084333/{{ urlencode($store->logo) }}"/>

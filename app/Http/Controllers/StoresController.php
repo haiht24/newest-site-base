@@ -12,26 +12,31 @@ use Cache;
 class StoresController extends Controller {
 
     public function getDetails($alias, Re $request) {
-
-        $data = [];
-        $storeAlias = strtolower($alias);
-        $store = $this->getStore($alias);
-        $storeId = $store->id;
-        $store->name_keyword = $this->nameWithKeyword($store->name);
-        $coupons = $this->getCoupons($storeId);
-        $childStores = DB::select( DB::raw(
-            "SELECT name,alias
+        $key = "storedetail_$alias";
+        if(Cache::has($key)) {
+            $data = Cache::get($key);
+        }else {
+            $data = [];
+            $storeAlias = strtolower($alias);
+            $store = $this->getStore($alias);
+            $storeId = $store->id;
+            $store->name_keyword = $this->nameWithKeyword($store->name);
+            $coupons = $this->getCoupons($storeId);
+            $childStores = DB::select(DB::raw(
+                "SELECT name,alias
                     FROM stores
                     where store_url='{$store->store_url}'
                     AND countrycode='US'
                     AND alias != '$storeAlias'
                     AND status='published'
                     "
-        ) );
+            ));
 
-        $store->coupons = $coupons;
-        $data['store'] = $store;
-        $data = $this->__getSEOConfig($data);//dd($data);
+            $store->coupons = $coupons;
+            $data['store'] = $store;
+            $data = $this->__getSEOConfig($data);//dd($data);
+            Cache::put($key, $data, 1440);
+        }
         return view('store-detail')->with($data);
 
     }

@@ -15,39 +15,42 @@ $(document).ready(function(){
     $('#show-more').click(function(){
         catGetMore();
     });
-});
 
-function getFilter(checked=1,remove=0, cpType='', thishtml, is) {
-    var url = $('.filter-box').attr('data-url');
+    /* filter type */
+    function getFilter(checked=1,remove=0, cpType='', thishtml, is) {
+        var url = $('.filter-box').attr('data-url');
 
-    $(is).html(filterLoading);
-    $.get(url + '&checked='+checked+'&remove='+remove+'&coupon_type='+cpType, function(data){
-        $('#coupons-list').html(data);
-        $(is).html(thishtml);
+        $(is).html(filterLoading);
+        $.get(url + '&checked='+checked+'&remove='+remove+'&coupon_type='+cpType, function(data){
+            $('#coupons-list').html(data);
+            $(is).html(thishtml);
+        });
+
+    }
+
+    var filterLoading = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
+    $('.btn-type.btn-all').click(function(){
+        var thishtml = $(this).html();
+        $('.btn-type.btn-active').addClass('btn-none');
+        $('.btn-type.btn-active').removeClass('btn-active');
+        getFilter(0,1, '', thishtml, this);
+
     });
+    $(document).on('click', '.btn-type.btn-active', function(){
+        var thishtml = $(this).html();
+        $(this).removeClass('btn-active');
+        $(this).addClass('btn-none');
+        var checked = 0, remove = 0, cpType = $(this).attr('data-type');
+        getFilter(checked, remove, cpType, thishtml, this);
 
-}
+    });
+    $(document).on('click', '.btn-type.btn-none', function(){
+        var thishtml = $(this).html();
+        $(this).addClass('btn-active');
+        $(this).removeClass('btn-none');
+        var checked = 1, remove = 0, cpType = $(this).attr('data-type');
+        getFilter(checked, remove, cpType, thishtml, this);
 
-var filterLoading = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
-$('.btn-type.btn-all').click(function(){
-    var thishtml = $(this).html();
-    $('.btn-type').removeClass('btn-active');
-    getFilter(0,1, '', thishtml, this);
-
+    });
 });
-$(document).on('click', '.btn-type.btn-active', function(){
-    var thishtml = $(this).html();
-    $(this).removeClass('btn-active');
-    $(this).addClass('btn-none');
-    var checked = 0, remove = 0, cpType = $(this).attr('data-type');
-    getFilter(checked, remove, cpType, thishtml, this);
 
-});
-$(document).on('click', '.btn-type.btn-none', function(){
-    var thishtml = $(this).html();
-    $(this).addClass('btn-active');
-    $(this).removeClass('btn-none');
-    var checked = 1, remove = 0, cpType = $(this).attr('data-type');
-    getFilter(checked, remove, cpType, thishtml, this);
-
-});

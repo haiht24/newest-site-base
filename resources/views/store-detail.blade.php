@@ -70,16 +70,32 @@
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
+            @if(!empty($store->short_description))
             <div class="side-bar-right">
                 <div class="wrap-side-bar">
-                    <h2>About Richbrook</h2>
-                    Richbrook provides high-quality products that can help make your life better. There are many ways to save money when you shop on the Richbrook:
-                    Sign up allows users to avail newsletters and regular updates of Richbrook Discount Code and discounts and offers at Richbrook.
-                    Richbrook offers flat 15% OFF discount on all orders for a limited period by using Richbrook Discount Code.
-                    Customers can purchase Richbrook items and save a lot.
-                    On all orders, the company guarantee free shipping.
+                    <h3>About {{$store->name }}</h3>
+                    {!!html_entity_decode($store->short_description)!!}
                 </div>
             </div>
+            @endif
+
+            @if(!empty($childStores))
+                <div class="side-bar-right">
+                    <div class="wrap-side-bar">
+                        <h3 class="box-header">
+                            Related stores
+                        </h3>
+                        <div>
+                            <ul class="list-related" id="style-2">
+                                @foreach($childStores as $s)
+                                    <li><a class="filter-item" href="{{ route('store-detail', ['alias'=>$s->alias]) }}" title="{{ $s->name }} coupons, deals">{{ $s->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </div>

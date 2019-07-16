@@ -70,15 +70,15 @@
                         </div>
                         <div class="coupons-footer">
                             <div class="go-btn bottom_code code_reset bottom_re">
-                                @if(!empty($coupon->code))
-                                <a href="" rel="nofollow noopener" class="btn btn-go get-code coupon_button coupon_button_cover"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
+                                @if(!empty($c->code))
+                                <a rel="nofollow noopener" title="Coupon code" class="btn btn-go get-code coupon_button coupon_button_cover"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                     <span class="giv2-text">Get Code</span>
                                     <span class="giv2-code">{{ $c->code }}</span>
                                     <span class="giv2-cover"></span>
                                     <span class="giv2-image"></span>
                                 </a>
                                 @else
-                                <a href="" rel="nofollow noopener" class="btn btn-go get-deal coupons-getdeal"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
+                                <a rel="nofollow noopener" title="Get deals" class="btn btn-go get-deal coupons-getdeal"  data-goid="{{ $c->go }}" data-aff="{{ $aff_url }}">
                                     <span class="giv2-text">Get Deals</span>
                                 </a>
                                 @endif

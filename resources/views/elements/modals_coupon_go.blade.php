@@ -1,3 +1,7 @@
+<?php
+$aff_url = !empty($c->product_link) ? $c->product_link : ( !empty($store->affiliate_url) ? $store->affiliate_url : $store->store_url );
+
+?>
 <!-- Modal -->
         <div class="modal-dialog">
 
@@ -13,9 +17,15 @@
                     </div>
                     <div class="store-copy">
                         <div class="wrap-copy">
+                            @if(!empty($c->code))
                             <div class="input-copied">Copied !!!</div>
-                            <input type="text" id="select-copy" value="CODE123" readonly="1">
+                            <input type="text" id="select-copy" value="{{ $c->code }}" readonly="1">
                             <button class="btn btn-copy my_clip_button" id="btn-copy" title="Click me to copy to clipboard." data-clipboard-target="select-copy" data-clipboard-text="Failed copy">Copy Code</button>
+                            @else
+                            <div class="no-code">
+                                <a href="{{ $aff_url }}" title="best price best deals">Click Get Deal now <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                            </div>
+                            @endif
                         </div>
                     </div>
 

@@ -11,6 +11,10 @@ use Cache;
 
 class StoresController extends Controller {
 
+    public $filterType = '', $filterVerified = '';
+    function __construct() {
+    }
+
     public function getDetails($alias, Re $request) {
         $key = "storedetail_$alias";
         if(Cache::has($key)) {
@@ -21,7 +25,7 @@ class StoresController extends Controller {
             $store = $this->getStore($alias);
             $storeId = $store->id;
             $store->name_keyword = $this->nameWithKeyword($store->name);
-            $coupons = $this->getCoupons($storeId);
+            $coupons = $this->getCoupons($store);
             $childStores = DB::select(DB::raw(
                 "SELECT name,alias
                     FROM stores
@@ -38,6 +42,13 @@ class StoresController extends Controller {
             Cache::put($key, $data, 1440);
         }
         //dd($data);
+        $data['couponsType'] = [
+            'verify' => 'Verified',
+            'Code' => 'Coupon Code',
+            'Deals' => 'Deal Type',
+            'Great' => 'Great Offer'
+        ];
+        $data['ssType'] = Session::get('coupon_type_' . $data['store']->alias);
         return view('store-detail')->with($data);
 
     }
@@ -45,7 +56,7 @@ class StoresController extends Controller {
     public function getMoreCoupons($storeId, $offset='', $limit = 20) {
         $data = [];
         $data['store'] = $this->getStore('', $storeId);
-        $data['store']->coupons = $this->getCoupons($storeId, $offset, $limit);
+        $data['store']->coupons = $this->getCoupons($data['store'], $offset, $limit);
         return view('elements.coupons_item_more')->with($data);
     }
     public function getGo($goId) {
@@ -78,6 +89,25 @@ class StoresController extends Controller {
         ));
         return view('elements.modals_coupon_go')->with($data);
     }
+
+    public function filterType(Re $request) {
+        if ($request->ajax()) {
+            $params = $request->all();
+            $filterCouponByType = Session::has('coupon_type_' . $params['alias']) ? Session::get('coupon_type_' . $params['alias']) : [];
+            if(!empty($params['remove'])&&$params['remove']) $filterCouponByType = [];
+            else if(count($filterCouponByType)<30)
+            if ($params['checked'] && !in_array($params['coupon_type'], $filterCouponByType)) {
+                array_push($filterCouponByType, $params['coupon_type']);
+            } else $filterCouponByType = array_diff($filterCouponByType, [$params['coupon_type']]);
+            Session::put('coupon_type_' . $params['alias'], $filterCouponByType);
+
+            $data = [];
+            $data['store'] = $this->getStore($params['alias']);
+            $data['store']->coupons = $this->getCoupons($data['store']);
+            return view('elements.coupons_item_more')->with($data);
+        }
+        return '';
+    }
     /* function helper */
     public function getStore($alias='', $id='') {
         $storeAlias = strtolower($alias);
@@ -89,8 +119,31 @@ class StoresController extends Controller {
             ->where('stores.status','=','published')
             ->first();
     }
-    public function getCoupons($storeId, $offset='', $limit = 20) {
+    public function getCoupons($store, $offset='', $limit = 20) {
         $offset = $offset?"OFFSET $offset":'';
+        $storeId = $store->id;
+        $this->getQueryType($store->alias);
+        $filterType = $this->filterType;
+        $filterVerified = $this->filterVerified;
+
+        $ssType = [];
+        if (Session::has('coupon_type_' . $store->alias)) {
+            $ssType = Session::get('coupon_type_' . $store->alias);
+        }
+        if(empty($ssType)) {
+            $caseType = "CASE
+                        WHEN c.coupon_type='Coupon Code' THEN 1
+                        WHEN c.coupon_type='Deal Type' THEN 2
+                        WHEN c.coupon_type='Great Offer' THEN 3
+                    END ASC,";
+        }else {
+            $caseType = "CASE
+                        WHEN c.coupon_type='Coupon Code' THEN 1";
+            foreach($ssType as $k=>$type) {
+                $caseType .=  " WHEN c.coupon_type='$type' THEN " . ($k+2);
+            }
+            $caseType .= " END ASC,";
+        }
         return DB::select( DB::raw(
             "SELECT c.id,c.title,c.currency,c.exclusive,c.description,c.created_at,c.expire_date,c.discount,c.coupon_code AS code,c.coupon_type AS type,c.coupon_image AS image,c.sticky,c.verified,c.comment_count,c.latest_comments,c.number_used,c.cash_back,c.note,c.top_order,p.foreign_key_right AS go
                     FROM coupons c
@@ -98,6 +151,8 @@ class StoresController extends Controller {
                     WHERE c.store_id = '{$storeId}'
                     AND c.status = 'published'
                     AND (c.expire_date >= NOW() OR c.expire_date IS NULL)
+                    {$filterType}
+                    {$filterVerified}
                     ORDER BY 
                     CASE
                         WHEN c.sticky = 'top' THEN 5
@@ -107,11 +162,7 @@ class StoresController extends Controller {
                         WHEN c.verified = 1 THEN 1
                         WHEN c.sticky = 'pending' THEN 0
                     END DESC,
-                    CASE
-                        WHEN c.coupon_type='Coupon Code' THEN 1
-                        WHEN c.coupon_type='Deal Type' THEN 2
-                        WHEN c.coupon_type='Great Offer' THEN 3
-                    END ASC,
+                    $caseType
                     c.top_order ASC,
                     c.created_at DESC,
                     c.title ASC
@@ -121,6 +172,27 @@ class StoresController extends Controller {
 
     }
 
+    public function getQueryType($storeAlias) {
+
+        $filterType = ''; $filterVerified = '';
+        if (Session::has('coupon_type_' . $storeAlias)) {
+            $ssType = Session::get('coupon_type_' . $storeAlias);
+            if (!empty($ssType)) {
+                $addType = array();
+                foreach ($ssType as $v) {
+                    if ($v == "Verified") {
+                        $addTypeVrf[] = "c.verified = 1";
+                        $filterVerified = "AND (" . implode($addTypeVrf) . ")";
+                    }
+                    if ($v == 'Coupon Code' || $v == 'Deal Type' || $v == 'Great Offer') {
+                        $addType[] = "c.coupon_type = '$v'";
+                        $filterType = "AND (" . implode( 'OR ' , $addType) . ")";
+                    }
+                }
+            }
+        }
+        $this->filterType = $filterType; $this->filterVerified = $filterVerified;
+    }
     public function nameWithKeyword($name) {
         if(stripos($name, ' coupon') || stripos($name, ' coupons')){
             return $name .= ' & Promo codes';

@@ -91,16 +91,26 @@ function openGo(aff, c) {
     location.href = aff;
     window.open('?c=' + c, '_blank');
 }
+function openRev(aff, c) {
+    location.href = '?c=' + c;
+    window.open(aff, '_blank');
+
+}
 function openGoEv(is) {
     var aff = $(is).attr('data-aff'),
         c = $(is).attr('data-goid');
     openGo(aff, c);
 }
-$('.go-btn .get-code').click(function(){
+function openGo_Rev(is) {
+    var aff = $(is).attr('data-aff'),
+        c = $(is).attr('data-goid');
+    openRev(aff, c);
+}
+$(document).on('click', '.go-btn .get-code', function(){
     openGoEv(this);
 });
-$('.go-btn .get-deal').click(function(){
-    openGoEv(this);
+$(document).on('click', '.go-btn .get-deal', function(){
+    openGo_Rev(this);
 });
 
 

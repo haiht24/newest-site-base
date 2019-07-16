@@ -56,10 +56,10 @@ function useJsFile(name, min=1) {
 
 // for all
 
-if (mix.inProduction()) { //if in: npm run production
-	//mix.minTemplate = require('laravel-mix-template-minifier');
-	//mix.minTemplate('storage/framework/views/*.php', 'storage/framework/views/');
-}
+//if (mix.inProduction()) { //if in: npm run production
+	mix.minTemplate = require('laravel-mix-template-minifier');
+	mix.minTemplate('storage/framework/views/*.php', 'storage/framework/views/');
+//}
 
 //mix.js('resources/assets/js/app.js', 'public/js') .sass('resources/assets/sass/app.scss', 'public/css');
 

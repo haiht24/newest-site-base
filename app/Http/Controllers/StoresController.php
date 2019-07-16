@@ -38,6 +38,7 @@ class StoresController extends Controller {
 
             $store->coupons = $coupons;
             $data['store'] = $store;
+            $data['childStores'] = $childStores;
             $data = $this->__getSEOConfig($data);//dd($data);
             Cache::put($key, $data, 1440);
         }

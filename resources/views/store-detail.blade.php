@@ -48,10 +48,12 @@
     <div class="box-show">
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-            <div class="filter-box">
-                <button class="btn btn-active">All</button>
-                <button class="btn">Code</button>
-                <button class="btn">Deals</button>
+            <div class="filter-box" data-url="{{ route('store-filter') }}?alias={{ $store->alias }}">
+                <button class="btn-type btn btn-all">All</button>
+                @foreach($couponsType as $title => $type)
+                    <?php $activeType = $ssType?in_array($type, $ssType):''; ?>
+                     <button class="btn-type btn{{ $activeType?' btn-active':' btn-none' }}" data-type="{{ $type }}">{{ $title }}</button>
+                @endforeach
             </div>
             <div class="box-list" id="coupons-list">
                 {{--item--}}

@@ -2,7 +2,7 @@
 @section('cssDevMod')
 @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/src/libs/bootstrap.3.3.7.min.css') }}" media="all,handheld"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/static_page.min.css) }}" media="all,handheld"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/static_page.min.css') }}" media="all,handheld"/>
 @stop
 @section('cssMix')
     @parent

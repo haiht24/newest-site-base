@@ -23,7 +23,7 @@
                     </form>
                     <div class="other-contact">
                         <div class="contact-header" >Are you a Merchant?</div>
-                        <div class="contact-mail">Email: <a href="mailto:{{'contacts@'.config('config.domain')}}">{{'contacts@'.config('config.domain')}}</a></div>
+                        <div class="contact-mail">Email: <a href="mailto:{{'contacts@'.config('config.domain')}}" title="mail">{{'contacts@'.config('config.domain')}}</a></div>
                         <div class="contact-desc">{{config('config.Projectname')}} is always proud to satisfy customers by providing them with the latest {{config('config.coupon')}} codes, the latest deals and the latest discounts. Besides, we are committed to ensuring that all the {{config('config.coupon')}} codes, deals or discounts we publish are 100% accurate. If you are worried that any information showed is inaccurate or would like us to remove any codes or {{config('config.coupon')}}s featured on the website, please feel free to let us know.
                         </div>
                     </div>

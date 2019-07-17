@@ -1,9 +1,10 @@
 $(document).ready(function(){
+    var filterLoading = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
     var offset = 0;
     function catGetMore() {
         offset += 20;
         var url = $('#show-more').attr('data-url') + '/' + offset;
-        $('#show-more button').html('...Loading...');
+        $('#show-more button').html(filterLoading+'...Loading...');
 
         $.get(url, function (data) {
             if(data.length==0) $('#show-more').remove();
@@ -28,7 +29,6 @@ $(document).ready(function(){
 
     }
 
-    var filterLoading = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
     $('.btn-type.btn-all').click(function(){
         var thishtml = $(this).html();
         $('.btn-type.btn-active').addClass('btn-none');

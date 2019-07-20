@@ -1,7 +1,7 @@
 
 
 
-@include('elements.foot')
+@include('blocks.elements.foot')
 @yield('script')
 @if(config('config.devmod'))
     @yield('scriptDevMod')

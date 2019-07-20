@@ -8,14 +8,17 @@
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-detail.css')) }}" media="all,handheld"/>
 @stop
-
+@section('head')
+@parent
+<link rel="canonical" href="{{ route('store-detail', ['alias'=>$store->alias]) }}">
+@stop
 @extends('app')
 
 @section('content')
     @parent
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}" title="Home page {{ $_SERVER['HTTP_HOST'] }}">Home</a></li>
-        <li><a href="{{ url('/category') }}" title="all categories">category</a></li>
+        <li><a href="{{ url('/category') }}" title="all categories">categories</a></li>
         <li class="active">{{ $store->name }}</li>
     </ul>
     <div class="info">
@@ -38,7 +41,7 @@
             <div class="info-button">
                 <a href="{{ ( !empty($store->affiliate_url) ? $store->affiliate_url : $store->store_url ) }}" title="{{ $store->name }} link store">
                 <button class="btn btn-info">
-                    GO TO RICHBROOK...
+                    GO TO {{ str_limit($store->name, 12) }}
                 </button>
                 </a>
             </div>

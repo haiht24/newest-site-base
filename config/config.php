@@ -7,7 +7,7 @@ return [
 	'devmod' => 1,
     'location' => 'US',
     'suffix_coupon' => '-coupons',
-    'Shipping' => 'Shipping'
+	'domain' => $_SERVER['HTTP_HOST']
 ];
 
 

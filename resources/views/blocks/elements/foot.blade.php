@@ -20,7 +20,7 @@
             </div>
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="footer-body-title"><h4>Title menu</h4></div>
-                <a href="" title="footer menu">footer menu</a>
+                <a href="{{ route('blogs-detail') }}" title="footer menu">Blogs</a>
             </div>
             <div class="col-g col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="footer-body-title"><h4>Title menu</h4></div>

@@ -57,8 +57,8 @@ function useJsFile(name, min=1) {
 // for all
 
 //if (mix.inProduction()) { //if in: npm run production
-if(0) {
-	mix.minTemplate = require('laravel-mix-template-minifier');
+if(1) {
+	mix.minTemplate = require(__dirname + '/node-minify/index.js');//require('laravel-mix-template-minifier');
 	mix.minTemplate('storage/framework/views/*.php', 'storage/framework/views/');
 }
 //}
@@ -122,15 +122,18 @@ var useMix = [
 
 
 ];
-/* for home page */
-	//js using scripts(not minify) or combine (minify)
-for(let i in useMix) if(useMix.hasOwnProperty(i)) {
-	console.log('mix ---------- '+useMix[i].title);
-	console.log('	js file: ', useMix[i].js);
-	console.log('	css file: ', useMix[i].css);
-	console.log("\n");
-	mix.scripts(useMix[i].js, useMix[i].mixjs);
-	mix.styles(useMix[i].css, useMix[i].mixcss);
+
+function compileCode(){
+//js using scripts(not minify) or combine (minify)
+	for(let i in useMix) if(useMix.hasOwnProperty(i)) {
+		console.log('mix ---------- '+useMix[i].title);
+		console.log('	js file: ', useMix[i].js);
+		console.log('	css file: ', useMix[i].css);
+		console.log("\n");
+		mix.scripts(useMix[i].js, useMix[i].mixjs);
+		mix.styles(useMix[i].css, useMix[i].mixcss);
+	}
 }
+compileCode();
 
 mix.browserSync('localhost');

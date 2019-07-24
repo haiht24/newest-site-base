@@ -7,7 +7,10 @@
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-category.css')) }}" media="all,handheld"/>
 @stop
-
+@section('head')
+@parent
+<link rel="canonical" href="{{ route('cat-detail', ['alias'=>$cat->alias]) }}">
+@stop
 @extends('app')
 
 @section('content')

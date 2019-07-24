@@ -12,7 +12,9 @@
 */
 
 Route::get('/', "HomeController@index");
-
+//Rss
+Route::get('/feed/stores', 'FeedController@stores');
+Route::get('/feed/coupons', 'FeedController@coupons');
 
 // for static page
 Route::get('/about-us', function () {
@@ -35,7 +37,7 @@ Route::get('/search/', 'WelcomeController@search');
 
 //category
 Route::get('/category', 'CategoryController@index');
-Route::get('/category/{alias}', 'CategoryController@CategoriesDetail');
+Route::get('/category/{alias}', 'CategoryController@CategoriesDetail')->name('cat-detail');
 Route::get('/category/{alias}/{offset}', 'CategoryController@getMoreStores');
 
 //stores
@@ -44,5 +46,11 @@ Route::get('/stores/more/{storeId}/{offset}', 'StoresController@getMoreCoupons')
 Route::get('/stores/filter', 'StoresController@filterType')->name('store-filter');
 //go coupons
 Route::get('/coupons/detail/{goId}', 'StoresController@getGo')->name('coupon-detail');
+
+//blogs
+Route::get('/blogs', function() {
+    return view('blogs.detail');
+})->name('blogs-detail');
+
 
 

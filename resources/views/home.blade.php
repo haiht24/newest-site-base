@@ -10,6 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset(mix('/css/mix-home.css')) }}" media="all,handheld"/>
 @stop
 
+@section('head')
+@parent
+<link rel="canonical" href="{{ url('/') }}">
+<link rel="alternate" hreflang="en" type="application/rss+xml" href="{{ url('/feed/stores') }}" title="Feed: Stores">
+<link rel="alternate" hreflang="en" type="application/rss+xml" href="{{ url('/feed/coupons') }}" title="Feed: Coupons">
+@stop
 @extends('app')
 
 @section('content')

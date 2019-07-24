@@ -2,7 +2,7 @@
     @parent
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 @stop
-    @include('elements.head')
+    @include('blocks.elements.head')
 {!! '</head><body>' !!}
     <header class="navbar-fixed-top wrap-header">
         <div class="header">
@@ -31,15 +31,17 @@
                     <a class="link">Coupons</a>
                     <a class="link">Deals</a>
                     <a class="link">Travel</a>
+                    {{--
                     <span class="dropdown">
-                            <span class="link"{{-- data-toggle="dropdown"--}}>Dropdown <span class="caret"></span>
+                            <span class="link"{{-- data-toggle="dropdown"--} }>Dropdown <span class="caret"></span>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Menu 1</a></li>
                                     <li><a href="#">Menu 2</a></li>
                                     <li><a href="#">Laravel</a></li>
                                 </ul>
                             </span>
-                        </span>
+                    </span>
+                    --}}
                 </div>
                 </div>
             </div>

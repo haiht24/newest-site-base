@@ -16,14 +16,14 @@ class StoresController extends Controller {
     }
 
     public function getDetails($alias, Re $request) {
-        $key = "storedetail_$alias";
+        $key = "store_detail_$alias";
         if(Cache::has($key)) {
             $data = Cache::get($key);
         }else {
             $data = [];
             $storeAlias = strtolower($alias);
             $store = $this->getStore($alias);
-            $storeId = $store->id;
+            //$storeId = $store->id;
             $store->name_keyword = $this->nameWithKeyword($store->name);
             $coupons = $this->getCoupons($store);
             $childStores = DB::select(DB::raw(

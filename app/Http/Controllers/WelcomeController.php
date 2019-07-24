@@ -24,7 +24,6 @@ class WelcomeController extends Controller
             $limitTitle = 50;
             $limitDes = 100;
             $searchResult = [];
-            $count = 0;
             foreach ($rs as $k => $item) {
                 $searchResult[$k]['id'] = $item->id;
                 $searchResult[$k]['image'] = $item->logo;
@@ -52,41 +51,6 @@ class WelcomeController extends Controller
                 $searchResult[0]['type'] = 'store';
                 $searchResult[0]['note'] = '';
             }
-            /*if (!empty($result['stores'])) {
-                foreach ($result['stores'] as $k => $item) {
-                    $searchResult[$k]['id'] = $item->id;
-                    $searchResult[$k]['image'] = $item->logo;
-                    $searchResult[$k]['title'] = (strlen($item->name) > $limitTitle) ? mb_substr($item->name, 0, $limitTitle) . '...' : $item->name;
-                    $searchResult[$k]['description'] = (strlen($item->description) > $limitDes) ? mb_substr($item->description, 0, $limitDes) . '...' : $item->description;
-                    $searchResult[$k]['alias'] = $item->alias;
-                    $searchResult[$k]['type'] = 'store';
-                }
-            }
-            if (!empty($result['coupons'])) {
-                for ($i = 0; $i < sizeof($result['coupons']); $i++) {
-                    $searchResult[$count]['id'] = $result['coupons'][$i]['id'];
-                    $searchResult[$count]['coupon_type'] = strtoupper($result['coupons'][$i]['coupon_type']);
-                    $searchResult[$count]['discount'] = $result['coupons'][$i]['discount'];
-                    $searchResult[$count]['currency'] = $result['coupons'][$i]['currency'];
-                    $searchResult[$count]['title'] = (strlen($result['coupons'][$i]['title']) > $limitTitle) ? mb_substr($result['coupons'][$i]['title'], 0, $limitTitle) . '...' : $result['coupons'][$i]['title'];
-                    $searchResult[$count]['description'] = (strlen($result['coupons'][$i]['description']) > $limitDes) ? mb_substr($result['coupons'][$i]['description'], 0, $limitDes) . '...' : $result['coupons'][$i]['description'];
-                    $searchResult[$count]['store_alias'] = $result['coupons'][$i]['s_alias'];
-                    $searchResult[$count]['coupon_key'] = $result['coupons'][$i]['go'];
-                    $searchResult[$count]['type'] = 'coupon';
-                    $count++;
-                }
-            }
-            if (!empty($result['deals'])) {
-                for ($i = 0; $i < sizeof($result['deals']); $i++) {
-                    $searchResult[$count]['id'] = $result['deals'][$i]['id'];
-                    $searchResult[$count]['image'] = $result['deals'][$i]['deal_image'];
-                    $searchResult[$count]['title'] = (strlen($result['deals'][$i]['title']) > $limitTitle) ? mb_substr($result['deals'][$i]['title'], 0, $limitTitle) . '...' : $result['deals'][$i]['title'];
-                    $searchResult[$count]['description'] = (strlen($result['deals'][$i]['description']) > $limitDes) ? mb_substr($result['deals'][$i]['description'], 0, $limitDes) . '...' : $result['deals'][$i]['description'];
-                    $searchResult[$count]['coupon_key'] = $result['deals'][$i]['go'];
-                    $searchResult[$count]['type'] = 'deal';
-                    $count++;
-                }
-            }*/
 
             $resp['items'] = $searchResult;
             //dd($searchResult);

@@ -14,12 +14,12 @@
                     </div>
                     </a>
                 </div>
-                <div class="col-lg-7 col-md-7 col-sm-9 col-xs-8 cl">
-                    <form class="form-search">
+                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-8 cl col-search">
+                    <form class="form-search no-search">
                         @include('elements.search-box')
                     </form>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0">
+                <div class="col-lg-3 col-md-3 col-sm-0 col-xs-0">
 
                 </div>
             </div>

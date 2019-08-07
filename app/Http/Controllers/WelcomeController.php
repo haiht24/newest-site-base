@@ -12,7 +12,7 @@ class WelcomeController extends Controller
         if($request->ajax()){
             $data = $request->all();
             $rs = DB::select( DB::raw(
-                "SELECT id,name,alias,description,logo,note
+                "SELECT id,name,alias,description,logo,note,store_url
                     FROM stores
                     WHERE name ilike '%{$data['keyword']}%'
                     AND status = 'published'
@@ -20,7 +20,6 @@ class WelcomeController extends Controller
                     LIMIT 20
                     "
             ) );
-
             $limitTitle = 50;
             $limitDes = 100;
             $searchResult = [];
@@ -32,6 +31,7 @@ class WelcomeController extends Controller
                 $searchResult[$k]['alias'] = $item->alias;
                 $searchResult[$k]['type'] = 'store';
                 $searchResult[$k]['note'] = $item->note;
+                $searchResult[$k]['domain'] = str_replace(['http://','https://', 'www.'],'', $item->store_url);
             }
             if( strpos($data['keyword'],'casino') !== FALSE ){
                 $searchResult[0]['id'] = 'a0ad5710-f38f-11e7-bacd-7961cdda64ed';
@@ -41,6 +41,7 @@ class WelcomeController extends Controller
                 $searchResult[0]['alias'] = 'unique-casino';
                 $searchResult[0]['type'] = 'store';
                 $searchResult[0]['note'] = 'VanLT - add from auto add store Afftrust';
+                $searchResult[0]['domain'] = '';
             }
             else if( strpos($data['keyword'],'host') !== FALSE ){
                 $searchResult[0]['id'] = 'b5d61710-9b3a-11e7-af85-c3db148eb572';
@@ -50,6 +51,7 @@ class WelcomeController extends Controller
                 $searchResult[0]['alias'] = 'resellerclub';
                 $searchResult[0]['type'] = 'store';
                 $searchResult[0]['note'] = '';
+                $searchResult[0]['domain'] = '';
             }
 
             $resp['items'] = $searchResult;

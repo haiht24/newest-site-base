@@ -50,7 +50,7 @@ $aff_url = !empty($c->product_link) ? $c->product_link : ( !empty($store->affili
                                                 {{ substr($c->code, -3, 3) }}
                                             </div>
                                             <div class="text-btn">
-                                                Coupons code
+                                                Get Code
                                             </div>
                                             <span class="code-cover"></span>
                                             <div class="code-text-image"></div>

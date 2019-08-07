@@ -27,6 +27,10 @@ $aff_url = !empty($c->product_link) ? $c->product_link : ( !empty($store->affili
                             </div>
                             @endif
                         </div>
+                        <div class="paste-to">
+                            Copy and paste this code at
+                            <a href="{{ $aff_url }}" title="best price best deals">{{ str_replace(['http://','https://', 'www.'],'', $store->store_url) }}</a>
+                        </div>
                     </div>
 
                     @if($relatedCp)

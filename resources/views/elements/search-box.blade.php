@@ -3,6 +3,6 @@
     <input type="text" name="q"  class="form-control search-form-header" />
     <span class="input-group-btn">
         <button class="btn btn-primary" type="button">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
     </span>
 </div>

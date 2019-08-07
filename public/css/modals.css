@@ -80,4 +80,12 @@
   left: -6px;
 }
 
+.paste-to {
+  padding: 15px;
+}
+.paste-to a {
+  color: #00c27e;
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=modals.css.map */

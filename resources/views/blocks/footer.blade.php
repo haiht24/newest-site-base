@@ -29,4 +29,5 @@
         });
     </script>
 @endif
+<div class="link-to-top"><i class="glyphicon glyphicon-arrow-up"></i></div>
 {!! '</body></html>' !!}

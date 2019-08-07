@@ -2,7 +2,7 @@ $( document ).ready(function(){
     /* for search box select 2 */
     var home = $('#home').val();
     $(".search-form-header").select2({
-        placeholder: "Search for Stores...",
+        placeholder: "Inter store name...",
         minimumInputLength: 2,
         multiple: true,
         ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
@@ -46,7 +46,7 @@ $( document ).ready(function(){
                 //            '<div class="col-sm-4"><img class="img-responsive" src="' + repo.image + '" /></div>' +
                 '<div class="col-sm-12">' +
                 '<div class="">' +
-                '<div><b>' + repo.title + '</b></div>' +
+                '<div><b>' + repo.title + '</b> <b class="sl-domain">' + repo.domain + '</b></div>' +
                 //            '<div>' + repo.description + '</div>' +
                 '</div></div></div>';
         } else {
@@ -85,6 +85,10 @@ $( document ).ready(function(){
     }
 
 
+    $('.link-to-top').click(function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
 });
 /* for coupons go */
 function openGo(aff, c) {

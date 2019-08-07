@@ -15,7 +15,22 @@
 	max-height: 140px;
   }
 }
+.col-search {
+  padding-right: 0px;
+}
+.select2-no-results,.select2-hidden-accessible,.select2-hidden {
+  display: none !important;
+}
+.select2-results {
+  margin: 0 !important;
+}
+
+.form-search,.link-menu {
+  padding: 20px;
+}
 .form-search {
+  text-align: right;
+  padding-right: 15px;
   input,button {
     font-family: Century Gothic Regular;
     height: 50px;
@@ -33,9 +48,6 @@
     background-color: #ad000b;
     border-color: #ad000b;
   }
-}
-.form-search,.link-menu {
-  padding: 20px;
 }
 .link-menu {
   padding: 0px 20px;
@@ -285,6 +297,13 @@
   :hover{
     background-color: #337AB7;
   }
+}
+.sl-domain {
+  margin-left: 15px;
+  color: #aaa;
+}
+.select2-results li.select2-result .col-sm-12 div div {
+	padding: 5px;
 }
 @media screen and (min-width: 505px) {
   #content {

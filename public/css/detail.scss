@@ -1,6 +1,7 @@
 @import 'app';
 .breadcrumb {
-  margin-bottom: 1px;
+  margin-bottom: 0px;
+  background-color: #fbfbfb;
 }
 .info {
   width: 100%;
@@ -71,22 +72,46 @@
 	  height: 123px;
 	  display: inline-block;
 	  position: relative;
+	  .info-go-wrap {
+		width: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+	  }
 	  .btn {
 		background-color: rgba(0,0,0,0);
 		border: 2px solid #f44242;
 		color: #cc0000;
 		font-weight: bold;
-		position: absolute;
 		margin: 0;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
 		padding: 8px;
 
 	  }
 	  .btn:hover {
 		background-color: rgba(230, 0, 0,0.9) ;
 		color: #fff;
+	  }
+
+	  .socials-share {
+		.icon-share {
+		  display: inline-block;
+		  cursor: pointer;
+		  width: 36px;
+		  height: 36px;
+		  text-align: center;
+		  background: #e5e5e5;
+		  border-radius: 20px;
+		  margin: 15px 2.5px;
+		  vertical-align: middle;
+		  padding: 5px;
+		}
+		.fb-icon:hover {
+		  background-color: #3b5998;
+		}
+		.twiter-icon:hover {
+		  background-color: #55acee;
+		}
 	  }
 
 	}
@@ -149,7 +174,7 @@
 	  text-align: center;
 	  width: 100%;
 	  margin: 10px 0;
-	  height: 45px;
+	  height: 115px;
 	  background-color: #fff;
 	  display: block;
 	  position: relative;
@@ -174,7 +199,7 @@
 		margin-right: 10px;
 	  }
 	  .btn-active {
-		background-color: #f66D9b;
+		background-color: #ee6762;
 		color: #fff;
 	  }
 	}
@@ -238,6 +263,7 @@
 				  width: 100%;
 				  min-height: 41px;
 				  padding: 0 !important;
+				  border: 0;
 
 				}
 				.wrap-btn-show {
@@ -260,7 +286,7 @@
 					text-align: right;
 					right: 0;
 					background-color: #fff;
-					border: 1px dashed #5c5;
+					border: dashed 1px #ca5b5b;
 
 				  }
 				  .text-btn {

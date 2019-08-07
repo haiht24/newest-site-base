@@ -49,6 +49,26 @@
   max-height: 140px;
 }
 
+.col-search {
+  padding-right: 0px;
+}
+
+.select2-no-results, .select2-hidden-accessible, .select2-hidden {
+  display: none !important;
+}
+
+.select2-results {
+  margin: 0 !important;
+}
+
+.form-search, .link-menu {
+  padding: 20px;
+}
+
+.form-search {
+  text-align: right;
+  padding-right: 15px;
+}
 .form-search input, .form-search button {
   font-family: Century Gothic Regular;
   height: 50px;
@@ -65,10 +85,6 @@
 .form-search button:hover {
   background-color: #ad000b;
   border-color: #ad000b;
-}
-
-.form-search, .link-menu {
-  padding: 20px;
 }
 
 .link-menu {
@@ -326,6 +342,15 @@
   background-color: #337AB7;
 }
 
+.sl-domain {
+  margin-left: 15px;
+  color: #aaa;
+}
+
+.select2-results li.select2-result .col-sm-12 div div {
+  padding: 5px;
+}
+
 @media screen and (min-width: 505px) {
   #content {
     margin-top: 124px;
@@ -412,12 +437,15 @@
 }
 .footer .footer-body a {
   color: #999;
+  font-size: 14px;
 }
 .footer .footer-body .footer-body-title h4 {
   color: #e8e8e8;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   text-shadow: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .footer .footer-bottom {
   border-top: 1px solid #3d3d3d;
@@ -429,6 +457,28 @@
   color: #b6b6b6;
   margin: 0;
   padding: 0;
+}
+
+.link-to-top {
+  width: 45px;
+  height: 45px;
+  line-height: 40px;
+  font-size: 1.625em;
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  color: #fff;
+  display: block;
+  background: #00c27e;
+  z-index: 97;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.link-to-top i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 html, body, div, input, button, select, textarea {

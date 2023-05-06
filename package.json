@@ -18,7 +18,7 @@
         "gulp": "^4.0.2",
         "gulp-htmlmin": "^5.0.1",
         "html-minifier": "^4.0.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "laravel-elixir": "^6.0.0-18",
         "laravel-elixir-minify-html": "^1.0.5",
         "laravel-mix": "^2.0",
